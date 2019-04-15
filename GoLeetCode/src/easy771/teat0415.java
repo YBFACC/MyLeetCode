@@ -1,7 +1,4 @@
-package teat;
-
-import java.util.Collection;
-import java.util.HashSet;
+package easy771;
 
 public class teat0415 {
 
@@ -16,7 +13,7 @@ public class teat0415 {
                 }
             }
         }
-        
+
         return count;
     }
     public static void main(String[] args){
