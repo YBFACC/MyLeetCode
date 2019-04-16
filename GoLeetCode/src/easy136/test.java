@@ -6,7 +6,7 @@ import java.util.HashSet;
 public class test {
 
 
-    public int singleNumber(int[] nums) {
+    /*public int singleNumber(int[] nums) {
         int len = nums.length;
         HashSet<Integer> hash = new HashSet<Integer>();
         Arrays.sort(nums);
@@ -17,21 +17,26 @@ public class test {
                 return nums[i];
             }
         }
-        return nums[len];
+        return nums[len];*/
 
 
+    //222222222222222   异或
 
-        //222222222222222   异或
-
-        public int singleNumber(int[] nums) {
-            int result = 0;
-            for(int i = 0;i<nums.length;i++){
-                result ^= nums[i];
-            }
-            return result;
+    public int singleNumber(int[] nums) {
+        int result = 0;
+        for (int i = 0; i < nums.length; i++) {
+            result ^= nums[i];
         }
-
+        return result;
     }
 
+    public static void main(String[] args){
+        test a1=new test();
+        int[] aa={2,1};
+        a1.singleNumber(aa);
+    }
 
 }
+
+
+
