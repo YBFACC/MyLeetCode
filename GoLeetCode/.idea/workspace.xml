@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9189ba61-b794-425b-ab45-7ac5bf4e8349" name="Default Changelist" comment="2" />
+    <list default="true" id="9189ba61-b794-425b-ab45-7ac5bf4e8349" name="Default Changelist" comment="2">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,10 +17,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/easy709/acdscae.java">
+        <entry file="file://$PROJECT_DIR$/src/easy237/adqwsdces.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="5" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="11" selection-end-column="5" />
+            <state relative-caret-position="225">
+              <caret line="15" column="5" lean-forward="true" selection-start-line="12" selection-start-column="4" selection-end-line="15" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -64,6 +66,7 @@
         <option value="$PROJECT_DIR$/src/GoGoGo/Solution.java" />
         <option value="$PROJECT_DIR$/src/GoGoGo/aaaa.java" />
         <option value="$PROJECT_DIR$/src/easy709/acdscae.java" />
+        <option value="$PROJECT_DIR$/src/easy237/adqwsdces.java" />
       </list>
     </option>
   </component>
@@ -105,7 +108,7 @@
               <item name="GoLeetCode" type="b2602c69:ProjectViewProjectNode" />
               <item name="GoLeetCode" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="easy709" type="462c0819:PsiDirectoryNode" />
+              <item name="easy237" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -238,18 +241,20 @@
       <workItem from="1555604165830" duration="3048000" />
       <workItem from="1555668917729" duration="7129000" />
       <workItem from="1555830210049" duration="4512000" />
-      <workItem from="1555917514066" duration="1955000" />
+      <workItem from="1555917514066" duration="3204000" />
+      <workItem from="1555932535378" duration="179000" />
+      <workItem from="1555933553827" duration="344000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32222000" />
+    <option name="totallyTimeSpent" value="33994000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="861" y="0" width="819" height="1050" extended-state="6" />
+    <frame x="1149" y="0" width="531" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24324325" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.24603175" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -258,7 +263,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32810867" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32810867" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4075235" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -427,7 +432,14 @@
     <entry file="file://$PROJECT_DIR$/src/easy709/acdscae.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
-          <caret line="11" column="5" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="11" selection-end-column="5" />
+          <caret line="11" column="5" selection-start-line="3" selection-start-column="4" selection-end-line="11" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/easy237/adqwsdces.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="5" lean-forward="true" selection-start-line="12" selection-start-column="4" selection-end-line="15" selection-end-column="5" />
         </state>
       </provider>
     </entry>
