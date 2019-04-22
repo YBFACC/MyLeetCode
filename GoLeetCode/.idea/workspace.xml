@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9189ba61-b794-425b-ab45-7ac5bf4e8349" name="Default Changelist" comment="2">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="9189ba61-b794-425b-ab45-7ac5bf4e8349" name="Default Changelist" comment="2" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,10 +15,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/GoGoGo/aaaa.java">
+        <entry file="file://$PROJECT_DIR$/src/easy709/acdscae.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+            <state relative-caret-position="165">
+              <caret line="11" column="5" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="11" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -65,6 +63,7 @@
         <option value="$PROJECT_DIR$/src/GoGoGo/Solution2.java" />
         <option value="$PROJECT_DIR$/src/GoGoGo/Solution.java" />
         <option value="$PROJECT_DIR$/src/GoGoGo/aaaa.java" />
+        <option value="$PROJECT_DIR$/src/easy709/acdscae.java" />
       </list>
     </option>
   </component>
@@ -90,7 +89,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -107,19 +105,14 @@
               <item name="GoLeetCode" type="b2602c69:ProjectViewProjectNode" />
               <item name="GoLeetCode" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="easy589" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GoLeetCode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GoLeetCode" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GoGoGo" type="462c0819:PsiDirectoryNode" />
+              <item name="easy709" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -148,7 +141,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Solution">
+  <component name="RunManager" selected="Application.acdscae">
     <configuration name="Solution" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="GoGoGo.Solution" />
       <module name="GoLeetCode" />
@@ -188,12 +181,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="teat0415" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="easy771.teat0415" />
+    <configuration name="acdscae" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="easy709.acdscae" />
       <module name="GoLeetCode" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="easy771.*" />
+          <option name="PATTERN" value="easy709.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -216,11 +209,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.acdscae" />
         <item itemvalue="Application.Solution" />
         <item itemvalue="Application.Test (1)" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.test" />
-        <item itemvalue="Application.teat0415" />
       </list>
     </recent_temporary>
   </component>
@@ -245,17 +238,18 @@
       <workItem from="1555604165830" duration="3048000" />
       <workItem from="1555668917729" duration="7129000" />
       <workItem from="1555830210049" duration="4512000" />
+      <workItem from="1555917514066" duration="1955000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30267000" />
+    <option name="totallyTimeSpent" value="32222000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
+    <frame x="861" y="0" width="819" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.24365482" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24324325" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -264,7 +258,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32810867" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32810867" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4075235" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -362,6 +356,12 @@
           <properties />
           <option name="timeStamp" value="35" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/easy709/acdscae.java</url>
+          <line>5</line>
+          <properties />
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -414,42 +414,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/easy589/Solution.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GoGoGo/Solution2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="1" lean-forward="true" selection-start-line="4" selection-end-line="14" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GoGoGo/Solution.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#255#256#0" expanded="true" />
-            <element signature="e#280#281#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/easy589/Solution.java" />
+    <entry file="file://$PROJECT_DIR$/src/GoGoGo/Solution2.java" />
+    <entry file="file://$PROJECT_DIR$/src/GoGoGo/Solution.java" />
     <entry file="file://$PROJECT_DIR$/src/GoGoGo/aaaa.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/easy709/acdscae.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="5" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="11" selection-end-column="5" />
         </state>
       </provider>
     </entry>
