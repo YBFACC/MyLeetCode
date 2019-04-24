@@ -1,6 +1,8 @@
 package easy206;
 
 
+import easy21.ListNode;
+
 public class svervwserv {
 
 
