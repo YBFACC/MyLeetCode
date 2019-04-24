@@ -1,5 +1,7 @@
 package easy203;
 
+import easy206.ListNode;
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {

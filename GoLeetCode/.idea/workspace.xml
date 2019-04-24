@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9189ba61-b794-425b-ab45-7ac5bf4e8349" name="Default Changelist" comment="2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/easy237/adqwsdces.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/easy237/adqwsdces.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/easy203/ListNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/easy206/ListNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/easy203/fnydbw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/easy203/fnydbw.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,23 +19,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/easy203/fnydbw.java">
+        <entry file="file://$PROJECT_DIR$/src/easy206/svervwserv.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/easy203/ListNode.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-              <folding>
-                <element signature="e#95#96#0" expanded="true" />
-                <element signature="e#118#119#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="285">
+              <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -81,8 +69,9 @@
         <option value="$PROJECT_DIR$/src/GoGoGo/aaaa.java" />
         <option value="$PROJECT_DIR$/src/easy709/acdscae.java" />
         <option value="$PROJECT_DIR$/src/easy237/adqwsdces.java" />
-        <option value="$PROJECT_DIR$/src/easy203/ListNode.java" />
         <option value="$PROJECT_DIR$/src/easy203/fnydbw.java" />
+        <option value="$PROJECT_DIR$/src/easy203/ListNode.java" />
+        <option value="$PROJECT_DIR$/src/easy206/svervwserv.java" />
       </list>
     </option>
   </component>
@@ -107,32 +96,7 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="GoLeetCode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GoLeetCode" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GoLeetCode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GoLeetCode" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GoLeetCode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GoLeetCode" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="easy203" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -265,17 +229,19 @@
       <workItem from="1555917514066" duration="3204000" />
       <workItem from="1555932535378" duration="179000" />
       <workItem from="1555933553827" duration="1034000" />
-      <workItem from="1555992942254" duration="1413000" />
+      <workItem from="1555992942254" duration="2684000" />
+      <workItem from="1556075355403" duration="1545000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36097000" />
+    <option name="totallyTimeSpent" value="38913000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="892" y="0" width="788" height="1050" extended-state="6" />
+    <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24396783" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.2436751" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -464,21 +430,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/easy203/ListNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-          <folding>
-            <element signature="e#95#96#0" expanded="true" />
-            <element signature="e#118#119#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/easy203/fnydbw.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/easy206/ListNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/easy206/svervwserv.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
         </state>
       </provider>
     </entry>
