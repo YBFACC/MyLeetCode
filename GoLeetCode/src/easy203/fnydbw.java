@@ -1,6 +1,6 @@
 package easy203;
 
-import easy21.ListNode;
+import easy148.ListNode;
 
 /**
  * Definition for singly-linked list.

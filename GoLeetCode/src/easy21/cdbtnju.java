@@ -1,4 +1,7 @@
 package easy21;
+
+import easy148.ListNode;
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {

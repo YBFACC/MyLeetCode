@@ -1,4 +1,4 @@
-package easy21;
+package easy148;
 
 public class ListNode {
     int val;
