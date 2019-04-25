@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9189ba61-b794-425b-ab45-7ac5bf4e8349" name="Default Changelist" comment="2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/easy203/fnydbw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/easy203/fnydbw.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/easy206/svervwserv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/easy206/svervwserv.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/easy21/ListNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/easy148/ListNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/easy21/cdbtnju.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/easy21/cdbtnju.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/easy104/TreeNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/easy111/TreeNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/easy104/ermcwpc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/easy104/ermcwpc.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,11 +18,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/easy111/svdny.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/easy104/ermcwpc.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="285">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
             </state>
           </provider>
         </entry>
@@ -76,8 +83,10 @@
         <option value="$PROJECT_DIR$/src/easy206/svervwserv.java" />
         <option value="$PROJECT_DIR$/src/easy21/cdbtnju.java" />
         <option value="$PROJECT_DIR$/src/easy148/gfnsavttt.java" />
-        <option value="$PROJECT_DIR$/src/easy104/TreeNode.java" />
         <option value="$PROJECT_DIR$/src/easy104/ermcwpc.java" />
+        <option value="$PROJECT_DIR$/src/easy111/TreeNode.java" />
+        <option value="$PROJECT_DIR$/src/easy111/svdny.java" />
+        <option value="$PROJECT_DIR$/src/easy104/TreeNode.java" />
       </list>
     </option>
   </component>
@@ -90,7 +99,7 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds">
     <option name="x" value="54" />
     <option name="y" value="23" />
     <option name="width" value="1626" />
@@ -122,6 +131,12 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="easy104" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="GoLeetCode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GoLeetCode" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="easy111" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -145,6 +160,9 @@
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/src/easy905/Test.java" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="easy104" />
+    </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="easy203" />
     </key>
@@ -267,18 +285,18 @@
       <workItem from="1556107249972" duration="151000" />
       <workItem from="1556108082300" duration="1332000" />
       <workItem from="1556116703693" duration="30000" />
-      <workItem from="1556159002044" duration="911000" />
+      <workItem from="1556159002044" duration="1655000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43875000" />
+    <option name="totallyTimeSpent" value="44619000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="850" y="0" width="830" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.4327411" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.23223351" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -502,17 +520,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/easy104/TreeNode.java">
+    <entry file="file://$PROJECT_DIR$/src/easy111/TreeNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/easy111/svdny.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/easy104/TreeNode.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/easy104/ermcwpc.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="285">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
