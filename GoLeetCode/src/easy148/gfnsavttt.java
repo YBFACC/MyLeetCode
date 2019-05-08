@@ -1,7 +1,7 @@
 package easy148;
 
 public class gfnsavttt {
-    public ListNode sortList(ListNode head) {
+    /*public ListNode sortList(ListNode head) {
 
 
         ListNode temp=null;
@@ -12,5 +12,5 @@ public class gfnsavttt {
                 
             }
         }
-    }
+    }*/
 }

@@ -29,4 +29,10 @@ public class fesca {
         }
         return sb.toString();
     }
+
+    public static void main(String[] args) {
+        String a="(()())(())(()(()))";
+        fesca aa=new fesca();
+        aa.removeOuterParentheses(a);
+    }
 }

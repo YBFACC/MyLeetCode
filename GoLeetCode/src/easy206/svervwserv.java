@@ -7,7 +7,7 @@ public class svervwserv {
 
 
 
-    public ListNode reverseList(ListNode head) {
+    /*public ListNode reverseList(ListNode head) {
         ListNode Head=head;
         ListNode curr=head;
         ListNode pre=null;
@@ -19,6 +19,6 @@ public class svervwserv {
             curr=temp;
         }
     return Head;
-    }
+    }*/
 
 }

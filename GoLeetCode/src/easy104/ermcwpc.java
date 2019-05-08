@@ -11,9 +11,9 @@ import easy111.TreeNode;
 
 public class ermcwpc {
 
-    public int maxDepth(TreeNode root) {
+   /* public int maxDepth(TreeNode root) {
         return root == null ? 0 : Math.min(maxDepth(root.left), maxDepth(root.right)) + 1;
-    }
+    }*/
 
 
 }

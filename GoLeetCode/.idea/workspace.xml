@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9189ba61-b794-425b-ab45-7ac5bf4e8349" name="Default Changelist" comment="2">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/easy1021/fesca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/easy1021/fesca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/easy104/ermcwpc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/easy104/ermcwpc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/easy148/gfnsavttt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/easy148/gfnsavttt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/easy203/fnydbw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/easy203/fnydbw.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/easy206/svervwserv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/easy206/svervwserv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/easy21/cdbtnju.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/easy21/cdbtnju.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,20 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/easy111/svdny.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/easy1021/fesca.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+            <state relative-caret-position="274">
+              <caret line="21" column="17" lean-forward="true" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -77,17 +72,17 @@
         <option value="$PROJECT_DIR$/src/GoGoGo/aaaa.java" />
         <option value="$PROJECT_DIR$/src/easy709/acdscae.java" />
         <option value="$PROJECT_DIR$/src/easy237/adqwsdces.java" />
-        <option value="$PROJECT_DIR$/src/easy203/fnydbw.java" />
         <option value="$PROJECT_DIR$/src/easy203/ListNode.java" />
-        <option value="$PROJECT_DIR$/src/easy206/svervwserv.java" />
-        <option value="$PROJECT_DIR$/src/easy21/cdbtnju.java" />
-        <option value="$PROJECT_DIR$/src/easy148/gfnsavttt.java" />
-        <option value="$PROJECT_DIR$/src/easy104/ermcwpc.java" />
         <option value="$PROJECT_DIR$/src/easy111/TreeNode.java" />
         <option value="$PROJECT_DIR$/src/easy104/TreeNode.java" />
         <option value="$PROJECT_DIR$/src/easy344/vevtwxcdfe.java" />
         <option value="$PROJECT_DIR$/src/easy111/svdny.java" />
         <option value="$PROJECT_DIR$/src/easy1021/fesca.java" />
+        <option value="$PROJECT_DIR$/src/easy21/cdbtnju.java" />
+        <option value="$PROJECT_DIR$/src/easy104/ermcwpc.java" />
+        <option value="$PROJECT_DIR$/src/easy203/fnydbw.java" />
+        <option value="$PROJECT_DIR$/src/easy206/svervwserv.java" />
+        <option value="$PROJECT_DIR$/src/easy148/gfnsavttt.java" />
       </list>
     </option>
   </component>
@@ -100,7 +95,7 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="x" value="992" />
     <option name="width" value="688" />
     <option name="height" value="1050" />
@@ -173,7 +168,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.acdscae">
+  <component name="RunManager" selected="Application.fesca">
     <configuration name="Solution" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="GoGoGo.Solution" />
       <module name="GoLeetCode" />
@@ -226,12 +221,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="easy136.test" />
+    <configuration name="fesca" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="easy1021.fesca" />
       <module name="GoLeetCode" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="easy136.*" />
+          <option name="PATTERN" value="easy1021.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -241,11 +236,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.fesca" />
         <item itemvalue="Application.acdscae" />
         <item itemvalue="Application.Solution" />
         <item itemvalue="Application.Test (1)" />
         <item itemvalue="Application.Test" />
-        <item itemvalue="Application.test" />
       </list>
     </recent_temporary>
   </component>
@@ -284,18 +279,18 @@
       <workItem from="1556449204647" duration="3054000" />
       <workItem from="1556526441470" duration="651000" />
       <workItem from="1557059667386" duration="1032000" />
-      <workItem from="1557240675428" duration="340000" />
+      <workItem from="1557240675428" duration="1929000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49764000" />
+    <option name="totallyTimeSpent" value="51353000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="850" y="0" width="830" height="1050" extended-state="0" />
+    <frame x="846" y="0" width="834" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15482233" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.23802164" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -305,7 +300,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32810867" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4075235" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3970742" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -314,7 +309,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.3290461" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.32079414" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32047158" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -408,6 +403,48 @@
           <properties />
           <option name="timeStamp" value="36" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/easy1021/fesca.java</url>
+          <line>12</line>
+          <properties />
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/easy1021/fesca.java</url>
+          <line>13</line>
+          <properties />
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/easy1021/fesca.java</url>
+          <line>17</line>
+          <properties />
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/easy1021/fesca.java</url>
+          <line>18</line>
+          <properties />
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/easy1021/fesca.java</url>
+          <line>25</line>
+          <properties />
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/easy1021/fesca.java</url>
+          <line>26</line>
+          <properties />
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/easy1021/fesca.java</url>
+          <line>22</line>
+          <properties />
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -477,38 +514,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/easy203/fnydbw.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/easy206/svervwserv.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/easy148/ListNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/easy21/cdbtnju.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/easy148/gfnsavttt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -521,13 +530,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/easy104/TreeNode.java">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/easy104/ermcwpc.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GoGoGo/aaaa.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -543,6 +545,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/easy206/svervwserv.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/easy111/svdny.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -550,10 +559,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/easy21/cdbtnju.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/easy104/ermcwpc.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/easy203/fnydbw.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/easy148/gfnsavttt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/easy1021/fesca.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+        <state relative-caret-position="274">
+          <caret line="21" column="17" lean-forward="true" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
         </state>
       </provider>
     </entry>
