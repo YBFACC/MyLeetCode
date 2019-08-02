@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9189ba61-b794-425b-ab45-7ac5bf4e8349" name="Default Changelist" comment="2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/easy169/scc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/easy169/scc.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,11 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/easy169/scc.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="125" column="4" lean-forward="true" selection-start-line="125" selection-start-column="4" selection-end-line="137" selection-end-column="5" />
+            <state relative-caret-position="1203">
+              <caret line="136" column="25" selection-start-line="136" selection-start-column="25" selection-end-line="136" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -46,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home/lib/src.zip!/java.base/java/util/Map.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="405" column="14" selection-start-line="405" selection-start-column="14" selection-end-line="405" selection-end-column="14" />
+            <state>
+              <caret selection-end-line="10" />
             </state>
           </provider>
         </entry>
@@ -121,8 +120,8 @@
         <option value="$PROJECT_DIR$/src/easy226/TreeNode.java" />
         <option value="$PROJECT_DIR$/src/easy226/fewfr.java" />
         <option value="$PROJECT_DIR$/src/easy1051/egrtg.java" />
-        <option value="$PROJECT_DIR$/src/test.java" />
         <option value="$PROJECT_DIR$/src/easy169/scc.java" />
+        <option value="$PROJECT_DIR$/src/test.java" />
       </list>
     </option>
   </component>
@@ -142,7 +141,7 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1083" />
+    <option name="x" value="869" />
     <option name="y" value="23" />
     <option name="width" value="999" />
     <option name="height" value="1417" />
@@ -155,8 +154,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -351,18 +350,18 @@
       <workItem from="1563691621474" duration="3366000" />
       <workItem from="1563804385921" duration="2493000" />
       <workItem from="1563871259382" duration="5378000" />
-      <workItem from="1564555652684" duration="3131000" />
+      <workItem from="1564555652684" duration="3382000" />
+      <workItem from="1564636973947" duration="535000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81906000" />
+    <option name="totallyTimeSpent" value="82692000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1083" y="23" width="999" height="1417" extended-state="0" />
-    <editor active="true" />
+    <frame x="869" y="23" width="999" height="1417" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.59907836" weight="0.17552742" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.59907836" visible="true" weight="0.17450365" />
       <window_info id="Structure" order="1" sideWeight="0.40092167" side_tool="true" weight="0.17552742" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -372,7 +371,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32872504" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.1889401" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.41090629" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.41090629" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -873,16 +872,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home/lib/src.zip!/java.base/java/util/Iterator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
@@ -920,11 +909,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/easy169/scc.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="125" column="4" lean-forward="true" selection-start-line="125" selection-start-column="4" selection-end-line="137" selection-end-column="5" />
+        <state relative-caret-position="1203">
+          <caret line="136" column="25" selection-start-line="136" selection-start-column="25" selection-end-line="136" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="10" />
         </state>
       </provider>
     </entry>
