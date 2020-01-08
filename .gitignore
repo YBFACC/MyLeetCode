@@ -1,1 +1,6 @@
-./GoLeetCode/.idea/workspace.xml
+*.iml
+*.txt
+*.xml
+GoLeetCode/.idea:
+GoLeetCode/out:
+.DS_Store
