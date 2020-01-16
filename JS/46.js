@@ -3,7 +3,7 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-var permute = function(nums) {
+var permute1 = function(nums) {
   const len = nums.length
   const res = []
   dfs([], 0, len, nums, res)
@@ -33,7 +33,32 @@ var dfs = (cur, index, len, nums, res) => {
 }
 
 var swap = (nums, i, j) => {
-  [nums[i], nums[j]] = [nums[j], nums[i]]
+  ;[nums[i], nums[j]] = [nums[j], nums[i]]
+}
+
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var permute = function(nums) {
+  var n = nums.length
+  var res = []
+  var tmpPath = []
+  var backtrack = function(tmpPath) {
+    if (tmpPath.length == n) {
+      res.push(tmpPath)
+      return
+    }
+    for (let i = 0; i < n; i++) {
+      if (!tmpPath.includes(nums[i])) {
+        tmpPath.push(nums[i])
+        backtrack(tmpPath.slice())
+        tmpPath.pop()
+      }
+    }
+  }
+  backtrack(tmpPath)
+  return res
 }
 
 var nums = [1, 2, 3]
