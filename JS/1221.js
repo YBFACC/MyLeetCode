@@ -19,4 +19,19 @@ var balancedStringSplit = function(s) {
   return res
 }
 
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var balancedStringSplit = function(s) {
+  var nums = 0
+  var res = 0
+  var n=s.length
+  for (let i = 0; i < n; i++) {
+    s[i] == 'R' ? nums++ : nums--
+    nums == 0 ? res++ : null
+  }
+  return res
+}
+
 balancedStringSplit('RLRRLLRLRL')
