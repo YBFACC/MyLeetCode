@@ -24,3 +24,30 @@ NumArray.prototype.sumRange = function(i, j) {
  * var obj = new NumArray(nums)
  * var param_1 = obj.sumRange(i,j)
  */
+
+/**
+ * 参考---动态规划--空间性能差
+ * @param {number[]} nums
+ */
+var NumArray = function(nums) {
+  let dp = [0]
+  for (let i = 0; i < nums.length; i++) {
+    dp.push(dp[i] + nums[i])
+  }
+  this.res = dp
+}
+
+/**
+ * @param {number} i
+ * @param {number} j
+ * @return {number}
+ */
+NumArray.prototype.sumRange = function(i, j) {
+  return this.res[j + 1] - this.res[i]
+}
+
+/**
+ * Your NumArray object will be instantiated and called as such:
+ * var obj = new NumArray(nums)
+ * var param_1 = obj.sumRange(i,j)
+ */
