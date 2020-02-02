@@ -30,4 +30,22 @@ var countNumbersWithUniqueDigits = function(n) {
   return sum + countNumbersWithUniqueDigits(n - 1)
 }
 
+/**
+ *参考---递归--数学排列问题---性能好
+ * @param {number} n
+ * @return {number}
+ */
+var countNumbersWithUniqueDigits = function(n) {
+  if (n === 1) {
+    return 10
+  } else if (n === 0) {
+    return 1
+  }
+  let res = 9
+  for (let i = 9, count = 1; count < n; i--, count++) {
+    res *= i
+  }
+  return res + countNumbersWithUniqueDigits(n - 1)
+}
+
 console.log(countNumbersWithUniqueDigits(3))
