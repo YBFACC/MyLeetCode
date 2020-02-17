@@ -52,6 +52,31 @@
  * @param {string[]} strs
  * @return {number}
  */
+//判断是否满足相对顺序
+var Traverse = function(item, str) {
+  let j = 0
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === item[j]) j++
+  }
+  return j === item.length
+}
+
+var func = function(item, strs) {
+  for (let i = 0; i < strs.length; i++) {
+    if (item === strs[i] && i !== strs.length - 1) continue //跳过自己（除了自己为最后一项）
+    if (item.length > strs[i].length) return item.length //判断的字符串大于strs剩余字符串长度，是=>找到最长特殊序列
+
+    if (Traverse(item, strs[i]) && item !== strs[i]) {
+      //是其他字符串的子序列，直接舍弃item
+      break
+    } else if (i === strs.length - 1) {
+      //如果item在strs的最后一项，即全部遍历strs完成都没有重复
+      return item.length
+    }
+  }
+  return null
+}
+
 var findLUSlength = function(strs) {
   strs.sort((a, b) => b.length - a.length) //有利于简化，arr数组也是长字符串在前
   let hashmap = new Map()
@@ -66,36 +91,15 @@ var findLUSlength = function(strs) {
       arr.push(k)
     }
   })
-  
-  let range = arr.length
-  //只有重复字符串返回-1
-  if (range === 0) return -1
-  let pointer = 0
-  while (pointer < range) {
-    let item = arr[pointer]//item判断是否为特殊字符串
-    for (let i = 0; i < strs.length; i++) {
-      if (item === strs[i] && i !== strs.length - 1) continue//跳过自己（除了自己为最后一项）
-      if (item.length > strs[i].length) return item.length//判断的字符串大于strs剩余字符串长度，是=>找到最长特殊序列
-      //判断是否满足相对顺序
-      let index = 0
-      let strArr = strs[i].split('')
-      let temp = strArr.filter(v => {
-        if (v === item[index]) {
-          index++
-          return true
-        }
-        return false
-      })
-      if (item === temp.join('')&&item !== strs[i]) {//是其他字符串的子序列，直接舍弃item
-        break
-      } else if (i === strs.length - 1) {//如果item在strs的最后一项，即全部遍历strs完成都没有重复
-        return item.length
-      }
+
+  for (let i = 0; i < arr.length; i++) {
+    if (func(arr[i], strs)) {
+      return arr[i].length
     }
-    pointer++
   }
+
   return -1
 }
 
-//console.log(findLUSlength(['aabbcc', 'aabbcc', 'cb']))
+console.log(findLUSlength(['aba', 'cdc', 'eae']))
 // @lc code=end
