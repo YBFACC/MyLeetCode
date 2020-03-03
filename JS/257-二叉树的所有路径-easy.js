@@ -13,7 +13,7 @@
  * }
  */
 /**
- * 自己---回溯--性能差🥶
+ * 自己---回溯--性能一般
  * @param {TreeNode} root
  * @return {string[]}
  */
@@ -23,7 +23,6 @@ var binaryTreePaths = function(root) {
   const func = function(root, arr) {
     arr.push(root.val)
     if (!root.left && !root.right) {
-      console.log(arr)
       res.push(arr.join('->'))
     }
     if (root.left) {
