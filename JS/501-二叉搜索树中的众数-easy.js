@@ -26,12 +26,17 @@ var findMode = function(root) {
     node.right && func(node.right)
   }
   func(root)
-  let max = Number.MIN_SAFE_INTEGER
+
+  let list = [...map]
+  list.sort((a, b) => b[1] - a[1])
   let res = []
-  map.forEach(v => (v > max ? (max = v) : null))
-  map.forEach((v, k) => {
-    v === max ? res.push(k) : null
-  })
+  for (let i = 0; i < list.length; i++) {
+    if (i === 0 || list[i][1] === list[i - 1][1]) {
+      res.push(list[i][0])
+    } else {
+      break
+    }
+  }
   return res
 }
 // @lc code=end
