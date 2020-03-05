@@ -13,6 +13,26 @@
  * }
  */
 /**
+ * 参考--二叉搜索树-反中序遍历--性能好
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var convertBST = function(root) {
+  let sum = 0
+  const func = function(node) {
+    if (!node) return
+
+    func(node.right)
+    sum += node.val
+    node.val = sum
+    func(node.left)
+  }
+  func(root)
+  return root
+}
+// @lc code=end
+
+/**
  * 自己--两次遍历树--性能差
  * @param {TreeNode} root
  * @return {TreeNode}
@@ -44,4 +64,3 @@ var convertBST = function(root) {
   add(root)
   return root
 }
-// @lc code=end
