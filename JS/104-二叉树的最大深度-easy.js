@@ -31,3 +31,18 @@ var maxDepth = function(root, n = 0) {
   return Math.max(n, n1, n2)
 }
 // @lc code=end
+
+/**
+ *  自底向上法
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var maxDepth = function(root) {
+  if (!root) {
+    return 0
+  } else {
+    const left = maxDepth(root.left)
+    const right = maxDepth(root.right)
+    return Math.max(left, right) + 1
+  }
+}
