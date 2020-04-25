@@ -63,3 +63,31 @@ var permute = function(nums) {
 
 var nums = [1, 2, 3]
 permute(nums)
+
+
+/**
+ * 不知道哪个是自己写的
+ * @description 
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var permute = function(nums) {
+  var n = nums.length
+  var res = []
+  var tmpPath = []
+  var backtrack = function(tmpPath) {
+    if (tmpPath.length == n) {
+      res.push(tmpPath)
+      return
+    }
+    for (let i = 0; i < n; i++) {
+      if (!tmpPath.includes(nums[i])) {
+        tmpPath.push(nums[i])
+        backtrack(tmpPath.slice())
+        tmpPath.pop()
+      }
+    }
+  }
+  backtrack(tmpPath)
+  return res
+}
