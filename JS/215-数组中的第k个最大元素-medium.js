@@ -66,3 +66,31 @@ function swap(list, i, j) {
 // @lc code=end
 
 findKthLargest([3, 2, 1, 5, 6, 4], 2)
+
+
+/**
+ * 参考--增加快排解法--性能差
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var findKthLargest = function (nums, k) {
+  let left = []
+  let right = []
+  let base = nums[0]
+
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] > base) {
+      right.push(nums[i])
+    } else {
+      left.push(nums[i])
+    }
+  }
+  if (right.length === k - 1) {
+    return base
+  } else if (right.length >= k) {
+    return findKthLargest(right, k)
+  } else {
+    return findKthLargest(left, k - right.length-1)
+  }
+}
