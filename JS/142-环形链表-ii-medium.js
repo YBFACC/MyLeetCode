@@ -32,3 +32,25 @@ var detectCycle = function (head) {
   return null
 }
 // @lc code=end
+
+/**
+ * 参考--floyd算法
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var detectCycle = function (head) {
+  if (!head || !head.next) return null
+  let curr = head
+  let pro = head
+  while (pro && pro.next) {
+    ;[curr, pro] = [curr.next, pro.next.next]
+    if (pro === curr) {
+      while (head !== curr) {
+        head = head.next
+        curr = curr.next
+      }
+      return head
+    }
+  }
+  return null
+}
