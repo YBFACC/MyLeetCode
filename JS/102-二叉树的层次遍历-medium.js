@@ -13,13 +13,13 @@
  * }
  */
 /**
- * 自己--好像是BFS--性能一般
+ * 自己--是dfs--性能一般
  * @param {TreeNode} root
  * @return {number[][]}
  */
-var levelOrder = function(root) {
+var levelOrder = function (root) {
   let res = []
-  const func = function(root, index, res) {
+  const func = function (root, index, res) {
     if (root === null) return
     if (typeof res[index] === 'undefined') {
       res.push([root.val])
@@ -34,3 +34,29 @@ var levelOrder = function(root) {
   return res
 }
 // @lc code=end
+
+/**
+ * 自己--打卡BFS
+ * @param {TreeNode} root
+ * @return {number[][]}
+ */
+var levelOrder = function (root) {
+  if (!root) return []
+  let dfs = [root]
+  let res = [[root.val]]
+  while (dfs.length > 0) {
+    let size = dfs.length
+    let temp = []
+    while (size > 0) {
+      let curr = dfs.shift()
+      curr.left && dfs.push(curr.left)
+      curr.right && dfs.push(curr.right)
+      curr.left && temp.push(curr.left.val)
+      curr.right && temp.push(curr.right.val)
+      size--
+    }
+    temp.length > 0 && res.push(temp.slice())
+  }
+  return res
+}
+
