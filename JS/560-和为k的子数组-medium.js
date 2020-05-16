@@ -33,3 +33,28 @@ var subarraySum = function (nums, k) {
 // @lc code=end
 
 subarraySum([0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 0)
+
+/**
+ * 参考--前缀和
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var subarraySum = (nums, k) => {
+  if (nums.length === 0) return 0
+  let map = { 0: 1 }
+  let prefixSum = 0
+  let count = 0
+  for (let i = 0; i < nums.length; i++) {
+    prefixSum += nums[i]
+    if (map[prefixSum - k]) {
+      count += map[prefixSum - k]
+    }
+    if (map[prefixSum]) {
+      map[prefixSum]++
+    } else {
+      map[prefixSum] = 1
+    }
+  }
+  return count
+}
