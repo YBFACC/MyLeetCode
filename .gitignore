@@ -1,8 +1,0 @@
-*.iml
-*.txt
-*.xml
-GoLeetCode/.idea/
-GoLeetCode/out/
-.DS_Store
-.vscode
-TreeNode.js
