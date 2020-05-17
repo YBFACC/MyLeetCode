@@ -4,16 +4,52 @@
  * [30] 串联所有单词的子串
  */
 
-const _ = require('lodash')
 
 // @lc code=start
-var findSubstring = function(s, words) {
+/**
+ * 参考--2个map次次比较
+ * @param {string} s
+ * @param {string[]} words
+ * @return {number[]}
+ */
+var findSubstring = function (s, words) {
+  if (!s || !words || !words.length) return []
+  let oneLength = words[0].length
+  let wordLength = words.length
+  let map = new Map()
+  for (const word of words) {
+    map.set(word, map.has(word) ? map.get(word) + 1 : 1)
+  }
+  let res = []
+  for (let i = 0; i <= s.length - wordLength * oneLength; i++) {
+    let count = 0
+    let hasword = new Map()
+    while (count < wordLength) {
+      let str = s.slice(
+        i + count * oneLength,
+        i + (count + 1) * oneLength 
+      )
+      if (map.has(str)) {
+        hasword.set(str, hasword.has(str) ? hasword.get(str) + 1 : 1)
+        if (hasword.get(str) > map.get(str)) {
+          break
+        }
+      } else {
+        break
+      }
+      count++
+      if (count === wordLength) {
+        res.push(i)
+      }
+    }
+  }
 
-};
+  return res
+}
+
 // @lc code=end
 
-findSubstring('wordgoodgoodgoodbestword', ['word', 'good', 'best', 'word'])
-
+findSubstring('barfoothefoobarman', ['foo', 'bar'])
 
 /**
  * 自己--trie超时
