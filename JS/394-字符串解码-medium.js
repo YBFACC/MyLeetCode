@@ -23,4 +23,26 @@ var decodeString = function (s) {
 }
 // @lc code=end
 
-decodeString("3[a]2[b4[F]c]")
+var decodeString = s => {
+  let stack_num = []
+  let stack_str = []
+  let num = 0
+  let res = ''
+  for (const char of s) {
+    if (!isNaN(char)) {
+      num = num * 10 + ~~char
+    } else if (char === '[') {
+      stack_num.push(num)
+      stack_str.push(res)
+      res = ''
+      num = 0
+    } else if (char === ']') {
+      res = stack_str.pop() + res.repeat(stack_num.pop())
+    } else {
+      res += char
+    }
+  }
+  return res
+}
+
+decodeString('100[leetcode]')
