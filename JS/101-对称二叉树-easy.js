@@ -13,22 +13,22 @@
  * }
  */
 /**
- * 参考---递归---性能好
+ * 自己--重做--递归
  * @param {TreeNode} root
  * @return {boolean}
  */
-var isSymmetric = function(root) {
-  if(root===null) return true
-  const recursion = function(root1, root2) {
-    if (root1 === null && root2 === null) return true
-    if (root1 === null || root2 === null) return false
+var isSymmetric = function (root) {
+  if (!root) return true
+  const dfs = function (node1, node2) {
+    if (!node1 && !node2) return true
+    if (!node1 || !node2) return false
     return (
-      root1.val === root2.val &&
-      recursion(root1.left, root2.right) &&
-      recursion(root1.right, root2.left)
+      node1.val === node2.val &&
+      dfs(node1.left, node2.right) &&
+      dfs(node1.right, node2.left)
     )
   }
-  return recursion(root.left, root.right)
+  return dfs(root.left, root.right)
 }
 
 // @lc code=end
