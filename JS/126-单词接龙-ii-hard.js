@@ -12,128 +12,193 @@
  * @param {string[]} wordList
  * @return {string[][]}
  */
+// var findLadders = function (beginWord, endWord, wordList) {
+//   let trie = new Trie(endWord)
+//   for (const word of wordList) {
+//     trie.insert(word)
+//   }
+
+//   let len = beginWord.length
+//   let res = []
+//   var min_len = Infinity
+//   let set = new Set()
+//   set.add(beginWord)
+
+//   let map = new Map()
+
+//   let all_words = new Map()
+
+//   const dfs = function (word, set, index) {
+//     let queue
+//     if (all_words.has(word)) {
+//       queue = [...all_words.get(word)]
+//     } else {
+//       queue = trie.search(word, len)
+//       all_words.set(word, queue.slice())
+//     }
+
+//     while (queue.length > 0) {
+//       let curr = queue.shift()
+
+//       if (set.has(curr)) {
+//         continue
+//       }
+//       if (min_len !== Infinity && set.size > min_len) {
+//         return
+//       }
+
+//       if (!map.has(curr)) {
+//         map.set(curr, index)
+//       } else {
+//         let _index = map.get(curr)
+//         if (_index < index) {
+//           continue
+//         } else {
+//           map.set(curr, index)
+//         }
+//       }
+
+//       set.add(curr)
+//       if (curr === endWord) {
+//         min_len = Math.min(min_len, set.size)
+//         res.push([...set])
+//         set.delete(endWord)
+//         return
+//       }
+//       dfs(curr, set, index + 1)
+//       set.delete(curr)
+//     }
+//     return
+//   }
+//   dfs(beginWord, set, 0)
+
+//   return res.filter(e => e.length <= min_len)
+// }
+
+// var TrieNode = function () {
+//   this.next = {}
+//   this.isEnd = false
+//   this.value = null
+// }
+
+// var Trie = function (endWord) {
+//   this.root = new TrieNode()
+//   this.endWord = endWord
+// }
+
+// Trie.prototype.insert = function (word) {
+//   if (!word) return
+
+//   let node = this.root
+//   for (let i = 0; i < word.length; i++) {
+//     if (!node.next[word[i]]) {
+//       node.next[word[i]] = new TrieNode()
+//     }
+//     node = node.next[word[i]]
+//   }
+//   node.isEnd = true
+//   node.value = word
+//   return
+// }
+
+// Trie.prototype.search = function (word, len) {
+//   let node = this.root
+//   let ans = []
+//   this.dfs(word, 0, node, true, ans, len)
+//   return ans
+// }
+// Trie.prototype.dfs = function (word, index, root, not_one, ans, len) {
+//   if (ans[0] === this.endWord) {
+//     return
+//   }
+//   if (len === index) {
+//     if (root.value === this.endWord) {
+//       ans.length = 0
+//     }
+//     ans.push(root.value)
+
+//     return
+//   }
+//   let key = Reflect.ownKeys(root.next)
+//   for (let i = 0; i < key.length; i++) {
+//     if (not_one) {
+//       if (word[index] === key[i]) {
+//         this.dfs(word, index + 1, root.next[key[i]], true, ans, len)
+//       } else {
+//         this.dfs(word, index + 1, root.next[key[i]], false, ans, len)
+//       }
+//     } else {
+//       if (word[index] === key[i]) {
+//         this.dfs(word, index + 1, root.next[key[i]], false, ans, len)
+//       }
+//     }
+//   }
+//   return
+// }
+
+/**
+ * 参考--无向图--度进行划分
+ * @param {string} beginWord
+ * @param {string} endWord
+ * @param {string[]} wordList
+ * @return {string[][]}
+ */
 var findLadders = function (beginWord, endWord, wordList) {
-  let trie = new Trie(endWord)
-  for (const word of wordList) {
-    trie.insert(word)
-  }
+  let level = 0
+  const wordSet = new Set(wordList)
+  let queue = [beginWord]
+  const levelMap = new Map()
+  const visited = new Set([beginWord])
+  const wordMap = new Map()
 
-  let len = beginWord.length
-  let res = []
-  var min_len = Infinity
-  let set = new Set()
-  set.add(beginWord)
+  let finished = false
+  levelMap.set(beginWord, 0)
 
-  let map = new Map()
-
-  let all_words = new Map()
-
-  const dfs = function (word, set, index) {
-    let queue
-    if (all_words.has(word)) {
-      queue = [...all_words.get(word)]
-    } else {
-      queue = trie.search(word, len)
-      all_words.set(word, queue.slice())
-    }
-
-    while (queue.length > 0) {
-      let curr = queue.shift()
-
-      if (set.has(curr)) {
-        continue
-      }
-      if (min_len !== Infinity && set.size > min_len) {
-        return
-      }
-
-      if (!map.has(curr)) {
-        map.set(curr, index)
-      } else {
-        let _index = map.get(curr)
-        if (_index < index) {
-          continue
-        } else {
-          map.set(curr, index)
+  while (queue.length > 0) {
+    let size = queue.length
+    level++
+    for (let index = 0; index < size; index++) {
+      let word = queue.shift()
+      for (let i = 0; i < word.length; i++) {
+        for (let code = 97; code <= 122; code++) {
+          let newWord =
+            word.slice(0, i) + String.fromCharCode(code) + word.slice(i + 1)
+          if (!wordSet.has(newWord)) continue
+          if (wordMap.has(newWord)) {
+            wordMap.get(newWord).push(word)
+          } else {
+            wordMap.set(newWord, [word])
+          }
+          if (visited.has(newWord)) continue
+          if (newWord === endWord) finished = true
+          levelMap.set(newWord, level)
+          queue.push(newWord)
+          visited.add(newWord)
         }
       }
-
-      set.add(curr)
-      if (curr === endWord) {
-        min_len = Math.min(min_len, set.size)
-        res.push([...set])
-        set.delete(endWord)
-        return
-      }
-      dfs(curr, set, index + 1)
-      set.delete(curr)
     }
-    return
   }
-  dfs(beginWord, set, 0)
 
-  return res.filter(e => e.length <= min_len)
-}
+  let res = []
+  if (!finished) return res
 
-var TrieNode = function () {
-  this.next = {}
-  this.isEnd = false
-  this.value = null
-}
-
-var Trie = function (endWord) {
-  this.root = new TrieNode()
-  this.endWord = endWord
-}
-
-Trie.prototype.insert = function (word) {
-  if (!word) return
-
-  let node = this.root
-  for (let i = 0; i < word.length; i++) {
-    if (!node.next[word[i]]) {
-      node.next[word[i]] = new TrieNode()
+  const dfs = function (path, word) {
+    if (word === beginWord) {
+      res.push([beginWord, ...path])
+      return
     }
-    node = node.next[word[i]]
-  }
-  node.isEnd = true
-  node.value = word
-  return
-}
-
-Trie.prototype.search = function (word, len) {
-  let node = this.root
-  let ans = []
-  this.dfs(word, 0, node, true, ans, len)
-  return ans
-}
-Trie.prototype.dfs = function (word, index, root, not_one, ans, len) {
-  if (ans[0] === this.endWord) {
-    return
-  }
-  if (len === index) {
-    if (root.value === this.endWord) {
-      ans.length = 0
-    }
-    ans.push(root.value)
-
-    return
-  }
-  let key = Reflect.ownKeys(root.next)
-  for (let i = 0; i < key.length; i++) {
-    if (not_one) {
-      if (word[index] === key[i]) {
-        this.dfs(word, index + 1, root.next[key[i]], true, ans, len)
-      } else {
-        this.dfs(word, index + 1, root.next[key[i]], false, ans, len)
-      }
-    } else {
-      if (word[index] === key[i]) {
-        this.dfs(word, index + 1, root.next[key[i]], false, ans, len)
+    path.unshift(word)
+    if (wordMap.get(word).length > 0) {
+      for (const item of wordMap.get(word)) {
+        if (levelMap.get(item) === levelMap.get(word) - 1) {
+          dfs(path, item)
+        }
       }
     }
+    path.shift()
   }
-  return
+  dfs([], endWord)
+  return res
 }
 
 // @lc code=end
