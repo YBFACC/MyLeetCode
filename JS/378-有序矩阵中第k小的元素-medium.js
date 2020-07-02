@@ -5,98 +5,136 @@
  */
 
 // @lc code=start
+// /**
+//  * 自己--最大堆--没有利用升序这个条件
+//  * @param {number[][]} matrix
+//  * @param {number} k
+//  * @return {number}
+//  */
+// var kthSmallest = function (matrix, k) {
+//   let heap = new MaxHeap(k)
+//   for (let i = 0; i < matrix.length; i++) {
+//     for (let j = 0; j < matrix.length; j++) {
+//       heap.insert(matrix[i][j])
+//     }
+//   }
+//   return heap.list[0]
+// }
+
+// class MaxHeap {
+//   constructor(k) {
+//     this.k = k
+//     this.list = []
+//   }
+//   insert(num) {
+//     if (this.list.length + 1 > this.k) {
+//       if (num >= this.list[0]) {
+//         return
+//       }
+//       this.extract()
+//     }
+//     this.list.push(num)
+//     let index = this.list.length - 1
+//     while (index) {
+//       let parent = Math.floor((index - 1) / 2)
+//       if (this.list[parent] >= this.list[index]) {
+//         break
+//       }
+//       swap(this.list, index, parent)
+//       index = parent
+//     }
+//   }
+//   extract() {
+//     swap(this.list, 0, this.list.length - 1)
+//     this.list.pop()
+//     let length = this.list.length
+//     let index = 0
+//     let child = index * 2 + 1
+//     while (child < length) {
+//       let right = index * 2 + 2
+//       if (right < length && this.list[right] > this.list[child]) {
+//         child = right
+//       }
+//       if (this.list[child] <= this.list[index]) {
+//         break
+//       }
+//       swap(this.list, child, index)
+//       index = child
+//       child = index * 2 + 1
+//     }
+//   }
+// }
+// function swap(list, i, j) {
+//   ;[list[i], list[j]] = [list[j], list[i]]
+// }
+// // @lc code=end
+
+// /**
+//  * copy--依次两两归并
+//  * @param {number[][]} matrix
+//  * @param {number} k
+//  * @return {number}
+//  */
+// var kthSmallest = function (matrix, k) {
+//   if (matrix.length < 1) return 0
+//   let arr = matrix.reduce((a, b) => merge(a, b))
+//   return arr[k - 1]
+// }
+
+// function merge(left, right) {
+//   let llen = left.length
+//   let rlen = right.length
+//   let i = 0
+//   let j = 0
+//   let res = []
+//   while (i < llen && j < rlen) {
+//     if (left[i] < right[j]) {
+//       res.push(left[i++])
+//     } else {
+//       res.push(right[j++])
+//     }
+//   }
+//   while (i < llen) res.push(left[i++])
+//   while (j < rlen) res.push(right[j++])
+//   return res
+// }
+
 /**
- * 自己--最大堆--没有利用升序这个条件
+ * 参考--利用2个升序特性--二分法
  * @param {number[][]} matrix
  * @param {number} k
  * @return {number}
  */
-var kthSmallest = function (matrix, k) {
-  let heap = new MaxHeap(k)
-  for (let i = 0; i < matrix.length; i++) {
-    for (let j = 0; j < matrix.length; j++) {
-      heap.insert(matrix[i][j])
-    }
-  }
-  return heap.list[0]
-}
-
-class MaxHeap {
-  constructor(k) {
-    this.k = k
-    this.list = []
-  }
-  insert(num) {
-    if (this.list.length + 1 > this.k) {
-      if (num >= this.list[0]) {
-        return
-      }
-      this.extract()
-    }
-    this.list.push(num)
-    let index = this.list.length - 1
-    while (index) {
-      let parent = Math.floor((index - 1) / 2)
-      if (this.list[parent] >= this.list[index]) {
-        break
-      }
-      swap(this.list, index, parent)
-      index = parent
-    }
-  }
-  extract() {
-    swap(this.list, 0, this.list.length - 1)
-    this.list.pop()
-    let length = this.list.length
-    let index = 0
-    let child = index * 2 + 1
-    while (child < length) {
-      let right = index * 2 + 2
-      if (right < length && this.list[right] > this.list[child]) {
-        child = right
-      }
-      if (this.list[child] <= this.list[index]) {
-        break
-      }
-      swap(this.list, child, index)
-      index = child
-      child = index * 2 + 1
-    }
-  }
-}
-function swap(list, i, j) {
-  ;[list[i], list[j]] = [list[j], list[i]]
-}
-// @lc code=end
-
-/**
- * copy--依次两两归并
- * @param {number[][]} matrix
- * @param {number} k
- * @return {number}
- */
-var kthSmallest = function (matrix, k) {
-  if (matrix.length < 1) return 0
-  let arr = matrix.reduce((a, b) => merge(a, b))
-  return arr[k - 1]
-}
-
-function merge(left, right) {
-  let llen = left.length
-  let rlen = right.length
-  let i = 0
-  let j = 0
-  let res = []
-  while (i < llen && j < rlen) {
-    if (left[i] < right[j]) {
-      res.push(left[i++])
+const countInMatrix = (matrix, midVal) => {
+  let n = matrix.length
+  let row = 0
+  let col = n - 1
+  let count = 0
+  while (row < n && col >= 0) {
+    if (matrix[row][col] <= midVal) {
+      count += col + 1
+      row++
     } else {
-      res.push(right[j++])
+      col--
     }
   }
-  while (i < llen) res.push(left[i++])
-  while (j < rlen) res.push(right[j++])
-  return res
+  return count
+}
+
+const kthSmallest = (matrix, k) => {
+  let n = matrix.length
+  let min = matrix[0][0]
+  let max = matrix[n - 1][n - 1]
+  while (min <= max) {
+    let mid = min + ((max - min) >> 1)
+    let count = countInMatrix(matrix, mid)
+    if (count < k) {
+      min = mid + 1
+    } else {
+      max = mid - 1
+    }
+  }
+  return min
 }
 
 kthSmallest(
