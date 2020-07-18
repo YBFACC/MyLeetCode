@@ -21,14 +21,8 @@ var deleteNode = function (root, key) {
     else if (root.right === null) return root.left
     else {
       const next = getNext(root, key)
-      if (next) {
-        root.val = next.val
-        root.right = deleteNode(root.right, next.val)
-      } else {
-        const pre = getPre(root, key)
-        root.val = pre.val
-        root.left = deleteNode(root.left, pre.val)
-      }
+      root.val = next.val
+      root.right = deleteNode(root.right, next.val)
     }
   }
   return root
@@ -45,17 +39,7 @@ function getNext(root, key) {
   }
   return next
 }
-function getPre(root, key) {
-  let next = null
-  while (root) {
-    if (root.val >= key) root = root.left
-    else {
-      next = root
-      root = root.right
-    }
-  }
-  return next
-}
+
 // @lc code=end
 let bst = TreeNode.create([5, 3, 6, 2, 4, null, 7])
 
