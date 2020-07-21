@@ -1,14 +1,22 @@
 /**
- * 自己--秒杀
+ * 参考--二分
  * @param {number[]} numbers
  * @return {number}
  */
-var minArray = function(numbers) {
-  if (numbers.length === 0) return null
-  for (let i = 0; i < numbers.length; i++) {
-    if (numbers[i] < numbers[i - 1]) {
-      return numbers[i]
+var minArray = function (numbers) {
+  let left = 0
+  let right = numbers.length - 1
+  while (left < right) {
+    let mid = left + ((right - left) >>> 1)
+    if (numbers[mid] > numbers[right]) {
+      left = mid + 1
+    } else if (numbers[mid] < numbers[right]) {
+      right = mid
+    } else {
+      right--
     }
   }
-  return numbers[0]
+  return numbers[left]
 }
+
+console.log(minArray([4, 7, 8, 9, 1, 2, 3, 4]))
