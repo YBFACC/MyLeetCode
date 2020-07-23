@@ -8,7 +8,7 @@
 const { TreeNode } = require('../LeetCode-Class/index')
 
 /**
- * 自己--重做--前序+list
+ * 自己--重做--map+前缀和
  * @param {TreeNode} root
  * @param {number} sum
  * @return {number}
@@ -16,27 +16,22 @@ const { TreeNode } = require('../LeetCode-Class/index')
 var pathSum = function (root, sum) {
   if (!root) return 0
   let res = 0
-  let list = []
-  let target = 0
-  const dfs = function (node) {
+  let map = new Map()
+  map.set(0, 0)
+  const dfs = function (node, index) {
     if (!node) return
-    list.push(node.val)
-    target += node.val
+    let _sum = map.get(index - 1) + node.val
 
-    let temp = target
-    let index = 0
-    while (index < list.length) {
-      if (temp === sum) res++
-      temp -= list[index]
-      index++
+    for (const [k, v] of map) {
+      if (_sum - v === sum) res++
     }
 
-    dfs(node.left)
-    dfs(node.right)
-    list.pop()
-    target -= node.val
+    map.set(index, map.get(index - 1) + node.val)
+    dfs(node.left, index + 1)
+    dfs(node.right, index + 1)
+    map.delete(index)
   }
-  dfs(root)
+  dfs(root, 1)
   return res
 }
 
