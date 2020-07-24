@@ -15,31 +15,35 @@ const { TreeNode } = require('../LeetCode-Class/index')
  * }
  */
 /**
- * 自己--中序遍历BST-不符合空间
+ * copy--优化到指存储2个节点
  * @param {TreeNode} root
  * @return {void} Do not return anything, modify root in-place instead.
  */
 var recoverTree = function (root) {
-  if (!root) return null
-  let list = []
-  const dfs = function (node) {
-    if (!node) return
-    dfs(node.left)
-    list.push(node.val)
-    dfs(node.right)
+  let pre = null,
+    a = null,
+    b = null
+  const swap = (a, b) => {
+    if (a !== null && b !== null) {
+      let t = a.val
+      a.val = b.val
+      b.val = t
+    }
   }
-  dfs(root)
-
-  list.sort((a, b) => a - b)
-
-  const _dfs = function (node) {
-    if (!node) return
-    _dfs(node.left)
-    node.val = list.shift()
-    _dfs(node.right)
+  const findTwoSwapped = root => {
+    if (root === null) return
+    findTwoSwapped(root.left)
+    if (pre !== null && root.val < pre.val) {
+      if (!a) a = pre
+      b = root
+    }
+    pre = root
+    findTwoSwapped(root.right)
   }
-  _dfs(root)
+  findTwoSwapped(root)
+  swap(a, b)
 }
+
 // @lc code=end
 
 recoverTree(TreeNode.create([3, 1, 4, null, null, 2]))
