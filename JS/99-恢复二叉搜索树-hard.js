@@ -8,42 +8,64 @@ const { TreeNode } = require('../LeetCode-Class/index')
 // @lc code=start
 /**
  * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
  * }
  */
 /**
- * copy--优化到指存储2个节点
+ * 参考--【莫里斯遍历】空间o1
  * @param {TreeNode} root
  * @return {void} Do not return anything, modify root in-place instead.
  */
 var recoverTree = function (root) {
-  let pre = null,
-    a = null,
-    b = null
-  const swap = (a, b) => {
-    if (a !== null && b !== null) {
-      let t = a.val
-      a.val = b.val
-      b.val = t
+  if (!root) {
+    return
+  }
+  let curr = root
+  let node1 = null
+  let node2 = null
+  let lastNode = null
+  while (curr) {
+    if (curr.left) {
+      let preNode = curr.left
+      while (preNode.right && preNode.right !== curr) {
+        preNode = preNode.right
+      }
+
+      if (!preNode.right) {
+        preNode.right = curr
+        curr = curr.left
+      } else {
+        if (lastNode && lastNode.val > curr.val) {
+          if (node1) {
+            node2 = curr
+          } else {
+            node1 = lastNode
+            node2 = curr
+          }
+        }
+        lastNode = curr
+        curr = curr.right
+        preNode.right = null
+      }
+    } else {
+      if (lastNode && lastNode.val > curr.val) {
+        if (node1) {
+          node2 = curr
+        } else {
+          node1 = lastNode
+          node2 = curr
+        }
+      }
+      lastNode = curr
+      curr = curr.right
     }
   }
-  const findTwoSwapped = root => {
-    if (root === null) return
-    findTwoSwapped(root.left)
-    if (pre !== null && root.val < pre.val) {
-      if (!a) a = pre
-      b = root
-    }
-    pre = root
-    findTwoSwapped(root.right)
-  }
-  findTwoSwapped(root)
-  swap(a, b)
+
+  ;[node1.val, node2.val] = [node2.val, node1.val]
 }
 
 // @lc code=end
 
-recoverTree(TreeNode.create([3, 1, 4, null, null, 2]))
+recoverTree(TreeNode.create([2, 1, 4, null, null, 3]))
