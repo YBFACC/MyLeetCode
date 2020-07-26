@@ -6,7 +6,7 @@
 
 // @lc code=start
 /**
- * 参考--DFS+记忆化
+ * 参考--拓扑排序
  * @param {number[][]} matrix
  * @return {number}
  */
@@ -14,12 +14,12 @@ var longestIncreasingPath = function (matrix) {
   if (matrix.length === 0) return 0
   const row = matrix.length
   const col = matrix[0].length
-  const memo = Array.from({ length: row }, () =>
+  const level = Array.from({ length: row }, () =>
     Array.from({ length: col }, () => 0)
   )
-  let res = 1
-  const set = new Set()
-  let ways = [
+  let res = 0
+  const queue = []
+  const ways = [
     [1, 0],
     [-1, 0],
     [0, 1],
@@ -27,37 +27,46 @@ var longestIncreasingPath = function (matrix) {
   ]
   for (let i = 0; i < row; i++) {
     for (let j = 0; j < col; j++) {
-      const str = i + ',' + j
-      set.add(str)
-      res = Math.max(res, _longestIncreasingPath(i, j))
-      set.delete(str)
+      for (const [row_way, col_way] of ways) {
+        const _row = i + row_way
+        const _col = j + col_way
+        if (
+          _row < 0 ||
+          _row >= row ||
+          _col < 0 ||
+          _col >= col ||
+          matrix[_row][_col] <= matrix[i][j]
+        ) {
+          continue
+        }
+        level[i][j]++
+      }
+      if (level[i][j] === 0) queue.push([i, j])
     }
   }
 
-  function _longestIncreasingPath(i, j) {
-    if (memo[i][j] !== 0) return memo[i][j]
-
-    memo[i][j]++
-
-    for (const [row_way, col_way] of ways) {
-      const _row = i + row_way
-      const _col = j + col_way
-      const _str = _row + ',' + _col
-      if (
-        _row < 0 ||
-        _row >= row ||
-        _col < 0 ||
-        _col >= col ||
-        set.has(_str) ||
-        matrix[_row][_col] <= matrix[i][j]
-      ) {
-        continue
+  while (queue.length > 0) {
+    res++
+    let size = queue.length
+    while (size > 0) {
+      const [i, j] = queue.shift()
+      for (const [row_way, col_way] of ways) {
+        const _row = i + row_way
+        const _col = j + col_way
+        if (
+          _row < 0 ||
+          _row >= row ||
+          _col < 0 ||
+          _col >= col ||
+          matrix[_row][_col] >= matrix[i][j]
+        ) {
+          continue
+        }
+        level[_row][_col]--
+        if (level[_row][_col] === 0) queue.push([_row, _col])
       }
-      set.add(_str)
-      memo[i][j] = Math.max(memo[i][j], _longestIncreasingPath(_row, _col) + 1)
-      set.delete(_str)
+      size--
     }
-    return memo[i][j]
   }
 
   return res
