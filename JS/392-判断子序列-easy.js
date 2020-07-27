@@ -6,26 +6,36 @@
 
 // @lc code=start
 /**
- * 参考--双指针
+ * 参考--逆序预处理dp--找到字母第一次出现
  * @param {string} s
  * @param {string} t
  * @return {boolean}
  */
 var isSubsequence = function (s, t) {
-  let s_index = 0
-  let t_index = 0
-  if (s.length === 0) return true
-  while (t_index <= t.length) {
-    if (s[s_index] === t[t_index]) {
-      s_index++
+  const dp = Array.from({ length: t.length + 1 }, () =>
+    Array.from({ length: 26 }, () => t.length)
+  )
 
-      if (s_index === s.length && t_index <= t.length) return true
+  for (let i = t.length - 1; i >= 0; i--) {
+    for (let j = 0; j < 26; j++) {
+      if (String.fromCharCode(97 + j) === t[i]) {
+        dp[i][j] = i
+      } else {
+        dp[i][j] = dp[i + 1][j]
+      }
     }
-    t_index++
   }
 
-  return false
+  let index = 0
+  for (let i = 0; i < s.length; i++) {
+    if (dp[index][s[i].charCodeAt() - 97] === t.length) {
+      return false
+    }
+    index = dp[index][s[i].charCodeAt() - 97] + 1
+  }
+
+  return true
 }
 
 // @lc code=end
-console.log(isSubsequence('abc', 'ahbgdc'))
+console.log(isSubsequence('axc', 'ahbgdc'))
