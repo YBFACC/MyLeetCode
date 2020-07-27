@@ -13,36 +13,12 @@
  * }
  */
 /**
- * 参考--复习下最大深度求法--性能好
+ * 自己--重做
  * @param {TreeNode} root
  * @return {number}
  */
-var maxDepth = function(root, n = 0) {
+var maxDepth = function (root) {
   if (!root) return 0
-  n++
-  var n1 = 0,
-    n2 = 0
-  if (root.left) {
-    n1 = maxDepth(root.left, n)
-  }
-  if (root.right) {
-    n2 = maxDepth(root.right, n)
-  }
-  return Math.max(n, n1, n2)
+  return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1
 }
 // @lc code=end
-
-/**
- *  自底向上法
- * @param {TreeNode} root
- * @return {number}
- */
-var maxDepth = function(root) {
-  if (!root) {
-    return 0
-  } else {
-    const left = maxDepth(root.left)
-    const right = maxDepth(root.right)
-    return Math.max(left, right) + 1
-  }
-}
