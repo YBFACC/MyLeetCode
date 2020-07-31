@@ -1,29 +1,41 @@
 /**
- * 参考--数学解法
- * x+y=a
- * x^2+y^2=b
- * 1到N--求和--求平方和
+ * 参考--异或--划分为2个数组
+ * 遍历一遍nums，遍历一般N
+ * 转化为2个数字出现1次，其他数字出现2次
  * @param {number[]} nums
  * @return {number[]}
  */
 var missingTwo = function (nums) {
   const N = nums.length + 2
-  let sum = 0
-  let square = 0
-  for (const num of nums) {
-    sum += num
-    square += num ** 2
+  let temp = 0
+  for (let i = 0; i < nums.length; i++) {
+    temp ^= nums[i]
   }
-  let all_sum = ((1 + N) / 2) * N
-  let all_square = (N * (N + 1) * (2 * N + 1)) / 6
-
-  let two_sum = all_sum - sum
-  let two_square = all_square - square
-
-  let b =
-    (two_sum + Math.sqrt(two_sum ** 2 - 2 * (two_sum ** 2 - two_square))) / 2
-  let a = two_sum - b
-  return [a, b]
+  for (let i = 1; i <= N; i++) {
+    temp ^= i
+  }
+  let x = 0
+  let y = 0
+  let count = 0
+  while ((temp & 1) === 0) {
+    temp >>>= 1
+    count++
+  }
+  for (let i = 0; i < nums.length; i++) {
+    if (((nums[i] >>> count) & 1) === 1) {
+      x ^= nums[i]
+    } else {
+      y ^= nums[i]
+    }
+  }
+  for (let i = 1; i <= N; i++) {
+    if (((i >>> count) & 1) === 1) {
+      x ^= i
+    } else {
+      y ^= i
+    }
+  }
+  return [x, y]
 }
 
-console.log(missingTwo([2, 3]))
+console.log(missingTwo([2]))
