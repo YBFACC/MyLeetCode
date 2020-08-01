@@ -3,6 +3,7 @@
  *
  * [114] 二叉树展开为链表
  */
+const { TreeNode } = require('../LeetCode-Class/index')
 
 // @lc code=start
 /**
@@ -13,15 +14,16 @@
  * }
  */
 /**
- * 参考--后序-对每个节点都交换左右子树--性能好
+ * 自己-重做还是看了以前的做法
+ * 后序遍历--将左节点的末尾接上右节点
  * @param {TreeNode} root
  * @return {void} Do not return anything, modify root in-place instead.
  */
 var flatten = function (root) {
-  if (!root) return
-  flatten(root.right)
+  if (!root) return null
   flatten(root.left)
-  let temp = root.right
+  flatten(root.right)
+  const temp = root.right
   root.right = root.left
   root.left = null
   while (root.right) {
@@ -29,5 +31,9 @@ var flatten = function (root) {
   }
   root.right = temp
 }
+
 // @lc code=end
 
+let a = TreeNode.create([1, 2, 5, 3, 4, null, 6])
+
+flatten(a)
