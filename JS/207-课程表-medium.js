@@ -6,7 +6,8 @@
 
 // @lc code=start
 /**
- * 自己--拓扑排序--度标记
+ * 参考--DFS--检查是否有环
+ * set存储所需前置条件
  * @param {number} numCourses
  * @param {number[][]} prerequisites
  * @return {boolean}
@@ -20,23 +21,26 @@ var canFinish = function (numCourses, prerequisites) {
     const curr = prerequisite[0]
     list[curr].add(condition)
   }
-  let queue = []
-  for (let i = 0; i < list.length; i++) {
-    if (list[i].size === 0) queue.push(i)
-  }
-  let count = 0
+  let flags = Array.from({ length: numCourses }, () => 0)
 
-  while (queue.length > 0) {
-    let curr = queue.shift()
-    count++
-    for (let i = 0; i < list.length; i++) {
-      if (list[i].has(curr)) {
-        list[i].delete(curr)
-        if (list[i].size === 0) queue.push(i)
-      }
+  function dfs(index) {
+    if (flags[index] === 1) return false
+    if (flags[index] === -1) return true
+
+    flags[index] = 1
+
+    for (const item of list[index]) {
+      if (!dfs(item)) return false
     }
+    flags[index] = -1
+    return true
   }
-  return count === numCourses
+
+  for (let i = 0; i < numCourses; i++) {
+    if (!dfs(i)) return false
+  }
+
+  return true
 }
 // @lc code=end
 console.log(
