@@ -3,7 +3,7 @@
  *
  * [337] 打家劫舍 III
  */
-
+const { TreeNode } = require('../LeetCode-Class/index')
 // @lc code=start
 /**
  * Definition for a binary tree node.
@@ -13,41 +13,25 @@
  * }
  */
 /**
- * 参考--后序遍历+dp--性能一般
+ * 重做--参考--树形dp
  * @param {TreeNode} root
  * @return {number}
  */
-var rob = function(root) {
-  const func = function(node) {
-    if (!node) {
-      return [0, 0]
-    }
-    let left = func(node.left)
-    let right = func(node.right)
+var rob = function (root) {
+  if (!root) return 0
+  const dfs = function (node) {
+    if (!node) return [0, 0]
+    let left = dfs(node.left)
+    let right = dfs(node.right)
 
-    let chooes = node.val + left[1] + right[1]
-    let nochooes = Math.max(left[0], left[1]) + Math.max(right[0], right[1])
-
-    return [chooes, nochooes]
+    return [
+      node.val + left[1] + right[1],
+      Math.max(left[1], left[0]) + Math.max(right[0], right[1])
+    ]
   }
 
-  let res = func(root)
-  return Math.max(res[0], res[1])
+  return Math.max(...dfs(root))
 }
 // @lc code=end
 
-// /**
-//  * @param {TreeNode} root
-//  * @return {number}
-//  */
-// var rob = function(root) {
-//   function dfs(cur) {
-//     if (!cur) {
-//       return [0, 0]
-//     }
-//     let L = dfs(cur.left)
-//     let R = dfs(cur.right)
-//     return [_.max(L) + _.max(R), cur.val + L[0] + R[0]]
-//   }
-//   return _.max(dfs(root))
-// }
+console.log(rob(TreeNode.create([4, 1, null, 2, null, 3])))
