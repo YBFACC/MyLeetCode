@@ -14,17 +14,15 @@ const { TreeNode } = require('../LeetCode-Class/index')
  * }
  */
 /**
- * 参考--【莫里斯遍历】空间o1
+ * 参考--重做--morris遍历-对于如何存储2个节点
  * @param {TreeNode} root
  * @return {void} Do not return anything, modify root in-place instead.
  */
 var recoverTree = function (root) {
-  if (!root) {
-    return
-  }
+  if (!root) return
   let curr = root
-  let node1 = null
-  let node2 = null
+  let resNode1 = null
+  let resNode2 = null
   let lastNode = null
   while (curr) {
     if (curr.left) {
@@ -32,40 +30,39 @@ var recoverTree = function (root) {
       while (preNode.right && preNode.right !== curr) {
         preNode = preNode.right
       }
-
       if (!preNode.right) {
         preNode.right = curr
         curr = curr.left
       } else {
         if (lastNode && lastNode.val > curr.val) {
-          if (node1) {
-            node2 = curr
+          if (resNode1) {
+            resNode2 = curr
           } else {
-            node1 = lastNode
-            node2 = curr
+            resNode1 = lastNode
+            resNode2 = curr
           }
         }
         lastNode = curr
-        curr = curr.right
         preNode.right = null
+        curr = curr.right
       }
     } else {
       if (lastNode && lastNode.val > curr.val) {
-        if (node1) {
-          node2 = curr
+        if (resNode1) {
+          resNode2 = curr
         } else {
-          node1 = lastNode
-          node2 = curr
+          resNode1 = lastNode
+          resNode2 = curr
         }
       }
       lastNode = curr
       curr = curr.right
     }
   }
-
-  ;[node1.val, node2.val] = [node2.val, node1.val]
+  ;[resNode1.val, resNode2.val] = [resNode2.val, resNode1.val]
+  
 }
 
 // @lc code=end
 
-recoverTree(TreeNode.create([2, 1, 4, null, null, 3]))
+recoverTree(TreeNode.create([3, 1, 4, null, null, 2]))
