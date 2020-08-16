@@ -5,26 +5,33 @@
  */
 
 // @lc code=start
-//参考--超时
+//参考--3维dp--前缀
 //每次都需要on^2的时间复杂度太高了
 function removeBoxes(boxes: number[]): number {
-  function getMax(curBoxes: number[], curSum: number): number {
-    if (curBoxes.length === 0) return curSum
-    if (curBoxes.length === 1) return curSum + 1
-    let max = 0
-    for (let i = 0; i < curBoxes.length; i++) {
-      let count = 0
-      for (let j = i; j < curBoxes.length; j++) {
-        if (curBoxes[i] === curBoxes[j]) count++
-        const left = curBoxes.slice(0, i)
-        const right = curBoxes.slice(j + 1)
-        max = Math.max(max, getMax(left.concat(right), curSum + count * count))
+  const n = boxes.length
+  const memo = Array.from({ length: n }, () =>
+    Array.from({ length: n }, () => new Array(n).fill(0))
+  )
+  function getMax(l: any, r: any, k: any): number {
+    if (l > r) return 0
+    if (memo[l][r][k] !== 0) return memo[l][r][k]
+    while (l < r && boxes[l] === boxes[l + 1]) {
+      k++
+      l++
+    }
+    let points = (k + 1) * (k + 1) + getMax(l + 1, r, 0)
+
+    for (let i = l + 1; i <= r; i++) {
+      if (boxes[i] === boxes[l]) {
+        points = Math.max(points, getMax(l + 1, i - 1, 0) + getMax(i, r, k + 1))
       }
     }
-    return max
+    memo[l][r][k] = points
+    return points
   }
+  let res = getMax(0, boxes.length - 1, 0)
 
-  return getMax(boxes, 0)
+  return res
 }
 // @lc code=end
 console.log(removeBoxes([1, 3, 2, 2, 2, 3, 4, 3, 1]))
