@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-//参考--3维dp--前缀
+//参考--3维dp--后缀
 //每次都需要on^2的时间复杂度太高了
 function removeBoxes(boxes: number[]): number {
   const n = boxes.length
@@ -15,15 +15,15 @@ function removeBoxes(boxes: number[]): number {
   function getMax(l: any, r: any, k: any): number {
     if (l > r) return 0
     if (memo[l][r][k] !== 0) return memo[l][r][k]
-    while (l < r && boxes[l] === boxes[l + 1]) {
+    while (l < r && boxes[r] === boxes[r - 1]) {
       k++
-      l++
+      r--
     }
-    let points = (k + 1) * (k + 1) + getMax(l + 1, r, 0)
+    let points = (k + 1) * (k + 1) + getMax(l, r - 1, 0)
 
-    for (let i = l + 1; i <= r; i++) {
-      if (boxes[i] === boxes[l]) {
-        points = Math.max(points, getMax(l + 1, i - 1, 0) + getMax(i, r, k + 1))
+    for (let i = l; i < r; i++) {
+      if (boxes[i] === boxes[r]) {
+        points = Math.max(points, getMax(i + 1, r - 1, 0) + getMax(l, i, k + 1))
       }
     }
     memo[l][r][k] = points
