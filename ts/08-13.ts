@@ -1,48 +1,32 @@
-//自己--dp3维-时间n^3
+//参考--先按一边排序--N^2
+//第i项往前遍历
 function pileBox(box: number[][]): number {
-  let maxWidth = 0
-  let maxHigh = 0
-  let maxDeepth = 0
-  for (const boxItem of box) {
-    maxWidth = Math.max(maxWidth, boxItem[0])
-    maxDeepth = Math.max(maxDeepth, boxItem[1])
-    maxHigh = Math.max(maxHigh, boxItem[2])
-  }
+  const Len = box.length
+  box.sort((a, b) => a[0] - b[0])
+  let res = 0
+  const dp = Array.from({ length: Len }, () => 0)
 
-  const dp = Array.from({ length: maxWidth + 1 }, () =>
-    Array.from({ length: maxDeepth + 1 }, () =>
-      Array.from({ length: maxHigh + 1 }, () => 0)
-    )
-  )
-  for (const boxItem of box) {
-    const Width = boxItem[0]
-    const Deepth = boxItem[1]
-    const High = boxItem[2]
-    dp[Width][Deepth][High] = High
-  }
-  for (let w = 1; w <= maxWidth; w++) {
-    for (let d = 1; d <= maxDeepth; d++) {
-      for (let h = 1; h <= maxHigh; h++) {
-        if (dp[w][d][h] === 0) {
-          dp[w][d][h] = Math.max(
-            dp[w - 1][d - 1][h - 1],
-            dp[w - 1][d][h],
-            dp[w][d - 1][h],
-            dp[w][d][h - 1]
-          )
-        } else {
-          dp[w][d][h] = dp[w - 1][d - 1][h - 1] + dp[w][d][h]
-        }
+  for (let i = 0; i < Len; i++) {
+    dp[i] = box[i][2]
+    for (let j = i - 1; j >= 0; j--) {
+      if (
+        box[j][0] < box[i][0] &&
+        box[j][1] < box[i][1] &&
+        box[j][2] < box[i][2]
+      ) {
+        dp[i] = Math.max(dp[i], box[i][2] + dp[j])
       }
     }
+    res = Math.max(res, dp[i])
   }
-  return dp[maxWidth][maxDeepth][maxHigh]
+  return res
 }
 
 console.log(
   pileBox([
     [1, 1, 1],
-    [2, 2, 2],
-    [3, 3, 3]
+    [2, 3, 4],
+    [2, 6, 7],
+    [3, 4, 5]
   ])
 )
