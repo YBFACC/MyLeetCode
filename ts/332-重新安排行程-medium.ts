@@ -5,9 +5,9 @@
  */
 
 // @lc code=start
-//参考--需要使用完所有机票-访问完所有边
+//参考--Hierholzer算法-欧拉路径
 function findItinerary(tickets: string[][]): string[] {
-  const res = ['JFK']
+  const res: string[] = []
   const map = new Map()
   for (const ticket of tickets) {
     if (map.has(ticket[0])) {
@@ -20,24 +20,15 @@ function findItinerary(tickets: string[][]): string[] {
     item.sort()
   }
 
-  const dfs = function (from: string, used: number) {
-    if (used === tickets.length) {
-      return true
-    }
+  const dfs = function (from: string) {
     const nextNode = map.get(from)
-    if (!nextNode || nextNode.length === 0) return false
-    for (let i = 0; i < nextNode.length; i++) {
-      const next = nextNode[i]
-      nextNode.splice(i, 1)
-      res.push(next)
-      if (dfs(next, used + 1)) {
-        return true
-      }
-      nextNode.splice(i, 0, next)
-      res.pop()
+    while (nextNode && nextNode.length > 0) {
+      const next = nextNode.shift()
+      dfs(next)
     }
+    res.unshift(from)
   }
-  dfs('JFK', 0)
+  dfs('JFK')
   return res
 }
 // @lc code=end
