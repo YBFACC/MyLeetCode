@@ -5,36 +5,30 @@
  */
 
 // @lc code=start
-//参考--如果k/2>总长度就失去限制意义
-//空间复杂度为on*k,时间为ok*n^2
+//参考--降维-改倒序
 function maxProfit(k: number, prices: number[]): number {
   if (k === 0 || prices.length < 2) return 0
 
   if (Math.max(k / 2) > prices.length) return maxProfitInfiK(prices)
 
-  const dp = [new Array(k + 1).fill(0)]
+  const Len = prices.length
+  const dp = Array.from({ length: k + 1 }, () =>
+    Array.from({ length: 2 }, () => 0)
+  )
 
-  for (let i = 1; i < prices.length; i++) {
-    const currFloor = dp[dp.length - 1].slice()
-    for (let j = 1; j <= i; j++) {
-      let curr = prices[i] - prices[j - 1]
-      currFloor[1] = Math.max(currFloor[1], curr)
-      if (j - 2 >= 0) {
-        let index = 2
-        const preFloor = dp[j - 2]
-        while (index < currFloor.length) {
-          currFloor[index] = Math.max(
-            preFloor[index - 1] + curr,
-            preFloor[index],
-            currFloor[index]
-          )
-          index++
-        }
-      }
-    }
-    dp.push(currFloor)
+  //初始化
+  for (let i = 0; i <= k; i++) {
+    dp[i][1] = -prices[0]
   }
-  return Math.max(0, ...dp[dp.length - 1])
+  for (let i = 1; i < Len; i++) {
+    for (let j = k; j > 0; j--) {
+      //处理第k次卖出
+      dp[j][0] = Math.max(dp[j][0], dp[j][1] + prices[i])
+      //处理第k次买入
+      dp[j][1] = Math.max(dp[j][1], dp[j - 1][0] - prices[i])
+    }
+  }
+  return dp[k][0]
 }
 
 function maxProfitInfiK(prices: number[]): number {
@@ -51,3 +45,5 @@ function maxProfitInfiK(prices: number[]): number {
 }
 
 // @lc code=end
+
+console.log(maxProfit(2, [3, 2, 6, 5, 0, 3]))
