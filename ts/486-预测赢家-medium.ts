@@ -5,24 +5,20 @@
  */
 
 // @lc code=start
-//参考--递归--去重
+//参考--二维dp
 function PredictTheWinner(nums: number[]): boolean {
-
-  const visited = new Map()
-
-  function helper(i: number, j: number): number {
-    const path = `${i},${j}`
-    if (visited.has(path)) return visited.get(path)
-    if (i === j) {
-      return nums[i]
-    }
-    const left = nums[i] - helper(i + 1, j)
-    const right = nums[j] - helper(i, j - 1)
-    const max = Math.max(left, right)
-    visited.set(path, max)
-    return max
+  const Len = nums.length
+  const dp = Array.from({ length: Len }, () => Array.from({ length: Len }, () => 0))
+  for (let i = 0; i < nums.length; i++) {
+    dp[i][i] = nums[i]
   }
-  return helper(0, nums.length - 1) >= 0
+
+  for (let i = Len - 2; i >= 0; i--) {
+    for (let j = i + 1; j < Len; j++) {
+      dp[i][j] = Math.max(nums[i] - dp[i + 1][j], nums[j] - dp[i][j - 1])
+    }
+  }
+  return dp[0][Len - 1] >= 0
 };
 // @lc code=end
 
