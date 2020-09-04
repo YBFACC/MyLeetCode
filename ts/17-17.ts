@@ -1,10 +1,12 @@
-//参考--trie勉强通过
+//参考--N^2logM降低到NlogM
 class TrieNode_1717 {
   next: any
   index: number
+  value: string
   constructor() {
     this.next = {}
     this.index = -1
+    this.value = ''
   }
 }
 
@@ -23,30 +25,30 @@ class Trie_1717 {
       node = node.next[word[i]]
     }
     node.index = i
+    node.value = word
     return
   }
-  search(word: string): number {
+  search(word: string, list: number[][], index: number): void {
     let node = this.root
-    for (let i = 0; i < word.length; i++) {
-      if (!node.next[word[i]]) return -1
+    for (let i = 0; i <= word.length; i++) {
+      if (node.index !== -1) {
+        list[node.index].push(i + index - node.value.length)
+      }
+      if (!node.next[word[i]]) return
       node = node.next[word[i]]
     }
-    return node.index
+    return
   }
 }
 
 function multiSearch(big: string, smalls: string[]): number[][] {
+  if (smalls.join('').length === 0) return [[]]
   const Len = smalls.length
   const trie = new Trie_1717(smalls)
-  const list: number[][] = Array.from({ length: Len }, () => [])
+  const list = Array.from({ length: Len }, () => [])
   for (let i = 0; i < big.length; i++) {
-    for (let j = i + 1; j <= big.length; j++) {
-      const str = big.slice(i, j)
-      const res = trie.search(str)
-      if (res !== -1) {
-        list[res].push(i)
-      }
-    }
+    let str = big.slice(i)
+    trie.search(str, list, i)
   }
   return list
 };
