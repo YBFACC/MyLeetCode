@@ -1,24 +1,22 @@
-//自己--N^2--超时
+//参考--O(N)-正反2次遍历
 function subSort(array: number[]): number[] {
   if (array.length < 2) return [-1, -1]
   let m = array.length
   let n = 0
   const Len = array.length
-
-  for (let i = 0; i < Len; i++) {
-    let min = array[i]
-    let max = array[i]
-    for (let j = i + 1; j < Len; j++) {
-      const item = array[j]
-      if (item < min) {
-        m = Math.min(m, i)
-      }
-      if (item < max) {
-        n = Math.max(n, j)
-      }
-      max = Math.max(max, item)
-      min = Math.min(min, item)
+  let max = array[0]
+  let min = array[array.length - 1]
+  for (let i = 0; i < array.length; i++) {
+    if (max > array[i]) {
+      n = Math.max(n, i)
     }
+    max = Math.max(max, array[i])
+  }
+  for (let i = Len - 1; i >= 0; i--) {
+    if (min < array[i]) {
+      m = Math.min(m, i)
+    }
+    min = Math.min(min, array[i])
   }
   if (m === array.length && n === 0) {
     return [-1, -1]
@@ -26,4 +24,4 @@ function subSort(array: number[]): number[] {
   return [m, n]
 };
 
-subSort([1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19])
+console.log(subSort([1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19]))
