@@ -5,40 +5,23 @@
  */
 import { TreeNode } from "leetcode-class";
 // @lc code=start
-//自己--DFS--后序一次完成最大深度和节点-拆除2次
+//参考--更加简洁的代码--可能会多访问节点的次数
 function lcaDeepestLeaves(root: TreeNode | null): TreeNode | null {
   if (!root) return null
-  let res: TreeNode | null = null
-  let max_deepth = 0
-  const get_deepth = function (node: TreeNode | null, index: number): void {
-    if (!node) { return }
-    if (!node.left && !node.right) {
-      max_deepth = Math.max(max_deepth, index)
-      return
-    }
-    node.left && get_deepth(node.left, index + 1)
-    node.right && get_deepth(node.right, index + 1)
-  }
+  let leftDepth = depth(root.left)
+  let rightDepth = depth(root.right)
+  if (leftDepth === rightDepth) return root
 
-  const dfs = function (node: TreeNode | null, index: number): number {
-    if (!node) { return index - 1 }
-    if (!node.left && !node.right && index === max_deepth) {
-      res = node
-      return index
-    }
-    let left = dfs(node.left, index + 1)
-    let right = dfs(node.right, index + 1)
-    if (left === right && left === max_deepth) {
-      res = node
-    }
-    return Math.max(left, right)
-  }
+  return leftDepth > rightDepth ? lcaDeepestLeaves(root.left) : lcaDeepestLeaves(root.right)
 
-  get_deepth(root, 0)
-  dfs(root, 0)
-
-  return res
 };
+
+function depth(node: TreeNode | null): number {
+  if (!node) return 0
+  else {
+    return Math.max(depth(node.left), depth(node.right)) + 1
+  }
+}
 // @lc code=end
 
-lcaDeepestLeaves(TreeNode.create([1,2,3]))
+console.log(lcaDeepestLeaves(TreeNode.create([1, 2, 3])))
