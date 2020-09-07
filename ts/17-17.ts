@@ -1,57 +1,47 @@
-//参考--N^2logM降低到NlogM
-class TrieNode_1717 {
-  next: any
-  index: number
-  value: string
-  constructor() {
-    this.next = {}
-    this.index = -1
-    this.value = ''
+//参考--kmp--(N+M)*smalls.length
+//需要对kmp对加深理解
+function kmp(text: string, pattern: string): number[] {
+  const res: number[] = []
+  const tLen = text.length
+  const pLen = pattern.length
+  const next = Array.from({ length: pLen }, () => 0)
+  next[0] = -1
+  let n = -1
+  for (let i = 0; i < pLen;) {
+    if (n < 0 || pattern[i] === pattern[n]) {
+      next[++i] = ++n
+    } else {
+      n = next[n]
+    }
   }
-}
 
-class Trie_1717 {
-  root: TrieNode_1717
-  constructor(list: string[]) {
-    this.root = new TrieNode_1717()
-    list.forEach((word, index) => this.insert.call(this, word, index))
-  }
-  insert(word: string, i: number): void {
-    let node = this.root
-    for (let i = 0; i < word.length; i++) {
-      if (!node.next[word[i]]) {
-        node.next[word[i]] = new TrieNode_1717()
-      }
-      node = node.next[word[i]]
+  for (let pi = 0
+    , ti = 0; pi < pLen && pLen - pi <= tLen - ti;) {
+    if (pi < 0 || text[ti] === pattern[pi]) {
+      ti++
+      pi++
+    } else {
+      pi = next[pi]
     }
-    node.index = i
-    node.value = word
-    return
-  }
-  search(word: string, list: number[][], index: number): void {
-    let node = this.root
-    for (let i = 0; i <= word.length; i++) {
-      if (node.index !== -1) {
-        list[node.index].push(i + index - node.value.length)
-      }
-      if (!node.next[word[i]]) return
-      node = node.next[word[i]]
+    if (pi === pLen) {
+      res.push(ti - pLen)
+      pi = next[pi]
     }
-    return
   }
+
+  return res
 }
 
 function multiSearch(big: string, smalls: string[]): number[][] {
-  if (smalls.join('').length === 0) return [[]]
-  const Len = smalls.length
-  const trie = new Trie_1717(smalls)
-  const list = Array.from({ length: Len }, () => [])
-  for (let i = 0; i < big.length; i++) {
-    let str = big.slice(i)
-    trie.search(str, list, i)
+  const list: number[][] = []
+  for (const small of smalls) {
+    if (small.length === 0) {
+      list.push([])
+    } else {
+      list.push(kmp(big, small))
+    }
   }
   return list
 };
 
-multiSearch("mississippi"
-  , ["is", "ppi", "hi", "sis", "i", "ssippi"])
+
