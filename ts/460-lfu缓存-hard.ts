@@ -1,6 +1,6 @@
 import { runScript } from "leetcode-class";
 
-//参考--map取值-map记录频率--双向链表O(1)删除
+//参考--更改细节
 class linkedTwo {
   pre: linkedTwo | undefined
   next: linkedTwo | undefined
@@ -14,17 +14,23 @@ class linkedTwo {
     this.next
     this.times = 1
   }
+  delete(): void {
+    const pre = this.pre as linkedTwo
+    const next = this.next as linkedTwo
+    pre.next = next
+    next.pre = pre
+  }
 }
 
 class LFUCache {
   getLinked: Map<number, linkedTwo>
-  time: Map<number, LFUitem>
+  frequentMap: Map<number, LFUitem>
   max: number
   cache_num: number
   minFreq: number
   constructor(capacity: number) {
     this.max = capacity
-    this.time = new Map()
+    this.frequentMap = new Map()
     this.getLinked = new Map()
     this.cache_num = 0
     this.minFreq = 1
@@ -33,76 +39,69 @@ class LFUCache {
   get(key: number): number {
     if (this.getLinked.has(key)) {
       const linked = this.getLinked.get(key) as linkedTwo
-      this.change(linked)
+      this.move(linked)
       return linked.val
     }
     return -1
   }
 
   put(key: number, value: number): void {
-    const time = this.time
+    const frequentMap = this.frequentMap
     if (this.getLinked.has(key)) {
       const linked = this.getLinked.get(key) as linkedTwo
       linked.val = value
-      this.change(linked)
+      this.move(linked)
     } else {
       if (this.cache_num >= this.max && this.max >= 1) {
-        let item = time.get(this.minFreq) as LFUitem
+        let item = frequentMap.get(this.minFreq) as LFUitem
         const temp = item.delete_Tail()
-        this.updata_minFreq(item, this.minFreq)
+        this.getLinked.set(key, this.insert_linked(key, value))
         this.getLinked.delete(temp)
-        this.cache_num--
-      }
-      if (this.cache_num < this.max) {
-        this.getLinked.set(key, this.insert(key, value))
+      } else if (this.cache_num < this.max) {
+        this.getLinked.set(key, this.insert_linked(key, value))
         this.cache_num++
       }
 
     }
 
   }
-  change(linked: linkedTwo): void {
-    const time = this.time
-    this.delete(linked)
+  move(linked: linkedTwo): void {
+    const frequentMap = this.frequentMap
+    linked.delete()
     linked.times++
-    this.add_time(linked)
-    this.updata_minFreq(time.get(linked.times - 1) as LFUitem, linked.times - 1)
+    this.add_frequentMap(linked)
+    this.updata_minFreq(frequentMap.get(linked.times - 1) as LFUitem, linked.times - 1)
   }
-  insert(key: number, value: number): linkedTwo {
+  insert_linked(key: number, value: number): linkedTwo {
     const target = new linkedTwo(key, value)
     this.minFreq = 1
-    this.add_time(target)
+    this.add_frequentMap(target)
     return target
   }
-  add_time(linked: linkedTwo): void {
-    const time = this.time
+  add_frequentMap(linked: linkedTwo): void {
+    const frequentMap = this.frequentMap
     const index = linked.times
-    if (!time.has(index)) {
-      time.set(index, new LFUitem())
+    if (!frequentMap.has(index)) {
+      frequentMap.set(index, new LFUitem())
     }
-    const item = time.get(index) as LFUitem
-    item.insert(linked)
+    const item = frequentMap.get(index) as LFUitem
+    item.insert_tump(linked)
   }
   updata_minFreq(item: LFUitem | undefined, index: number): void {
     if (!item) return
-    const time = this.time
+    const frequentMap = this.frequentMap
     if (item.nothing()) {
-      time.delete(index)
-      if (time.size === 0) {
+      frequentMap.delete(index)
+      if (frequentMap.size === 0) {
         this.minFreq = 1
         return
       }
-      while (!time.has(this.minFreq)) {
+      while (!frequentMap.has(this.minFreq)) {
         this.minFreq++
       }
     }
   }
-  delete(linked: linkedTwo): void {
-    const pre = linked.pre as linkedTwo
-    const next = linked.next as linkedTwo
-    pre.next = next
-    next.pre = pre
-  }
+
 }
 
 class LFUitem {
@@ -114,7 +113,7 @@ class LFUitem {
     this.tump.next = this.tail
     this.tail.pre = this.tump
   }
-  insert(linked: linkedTwo): void {
+  insert_tump(linked: linkedTwo): void {
     const temp = this.tump.next as linkedTwo
     linked.pre = this.tump
     this.tump.next = linked
