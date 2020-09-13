@@ -5,26 +5,23 @@
  */
 
 // @lc code=start
-//参考--dp--N^2
-//使用2个数组分别记录up和down
-//up和down冒泡更新
+//参考--贪心--折线图-记录峰谷个数
 function wiggleMaxLength(nums: number[]): number {
   if (nums.length < 2) return nums.length
   const Len = nums.length
-  const up: number[] = Array.from({ length: Len }, () => 0)
-  const down: number[] = Array.from({ length: Len }, () => 0)
-
-  for (let i = 1; i < Len; i++) {
-    for (let j = 0; j < i; j++) {
-      if (nums[i] > nums[j]) {
-        up[i] = Math.max(up[i], down[j] + 1)
-      } else if (nums[i] < nums[j]) {
-        down[i] = Math.max(down[i], up[j] + 1)
-      }
+  let res = 1
+  let up = 0
+  for (let i = 0; i < Len; i++) {
+    if (nums[i] > nums[i - 1] && (up === 0 || up === -1)) {
+      up = 1
+      res++
+    }
+    if (nums[i] < nums[i - 1] && (up === 0 || up === 1)) {
+      up = -1
+      res++
     }
   }
-
-  return Math.max(up[Len - 1], down[Len - 1]) + 1
+  return res
 };
 // @lc code=end
 
