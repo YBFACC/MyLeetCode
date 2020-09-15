@@ -5,34 +5,32 @@
  */
 
 // @lc code=start
-//自己--类似376题--使用折线图记录连续峰谷
+//参考--分成2个数组-看记录最长状态
+//类似题做过-峰谷问题
+//⚠️注意这里序列要求连续
 function maxTurbulenceSize(A: number[]): number {
   if (A.length < 2) return A.length
-  let isUp = 0
-  let res = 0
-  let temp = 0
-  for (let i = 1; i < A.length; i++) {
-    if (A[i] > A[i - 1] && (isUp !== -1)) {
-      isUp = -1
-      res++
-    } else if (A[i] < A[i - 1] && (isUp !== 1)) {
-      isUp = 1
-      res++
-    } else if (A[i] === A[i - 1]) {
-      temp = Math.max(temp, res)
-      res = 0
-      isUp = 0
+  const up = Array.from({ length: A.length + 1 }, () => 0)
+  const down = Array.from({ length: A.length + 1 }, () => 0)
+  up[1] = 1
+  down[1] = 1
+  let res = 1
+  for (let i = 2; i <= A.length; i++) {
+    if (A[i - 1] > A[i - 2]) {
+      up[i] = down[i - 1] + 1
+      down[i] = 1
     }
-    else {
-      i--
-      temp = Math.max(temp, res)
-      res = 0
-      isUp = 0
+    else if (A[i - 1] < A[i - 2]) {
+      down[i] = up[i - 1] + 1
+      up[i] = 1
+    } else {
+      down[i] = 1
+      up[i] = 1
     }
+    res = Math.max(up[i], down[i], res)
   }
-  temp = Math.max(temp, res)
-  return temp + 1
+  return res
 };
 // @lc code=end
 
-maxTurbulenceSize([2, 0, 2, 4, 2, 5, 0, 1, 2, 3])
+console.log(maxTurbulenceSize([0, 1, 1, 0, 1, 0, 1, 1, 0, 0]))
