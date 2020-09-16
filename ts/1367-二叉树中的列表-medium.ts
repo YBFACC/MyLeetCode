@@ -5,30 +5,17 @@
  */
 import { TreeNode, ListNode, runScript } from 'leetcode-class';
 // @lc code=start
-//自己--错误--head需要与treenode的每个进行比较
-function isSubPath(head: ListNode | null, root: TreeNode | null): boolean {
-  let res = false
-  if (!head) return false
-  const dfs = function (node: TreeNode | null, linked: ListNode | null): void {
-    if (!linked) {
-      res = true
-      return
-    }
-    if (!node) return
-    if (node.val === head.val) {
-      dfs(node.left, head.next)
-      dfs(node.right, head.next)
-    }
-    if (node.val === linked.val) {
-      dfs(node.left, linked.next)
-      dfs(node.right, linked.next)
-    } else {
-      dfs(node.left, head)
-      dfs(node.right, head)
-    }
-  }
-  dfs(root, head)
-  return res
+//参考--head需要与treenode的每个进行比较
+function isSubPath(head: ListNode | null, root: TreeNode | null | undefined): boolean {
+  if (!head || !root) return false
+  return dfs(root, head) || isSubPath(head, root?.left) || isSubPath(head, root?.right)
 };
+
+function dfs(node: TreeNode | null, linked: ListNode | null): boolean {
+  if (!linked) return true
+  if (!node) return false
+  return node.val === linked.val && (dfs(node.left, linked.next) || dfs(node.right, linked.next))
+}
 // @lc code=end
 
+console.log(isSubPath(ListNode.create([4, 2, 8]), TreeNode.create([1, 4, 4, null, 2, 2, null, 1, null, 6, 8, null, null, null, null, 1, 3])))
