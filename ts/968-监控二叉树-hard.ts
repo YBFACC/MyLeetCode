@@ -5,40 +5,47 @@
  */
 import { TreeNode, ListNode, runScript } from 'leetcode-class';
 // @lc code=start
-//参考--递归解
+//参考--树形dp--返回3个量
 function minCameraCover(root: TreeNode | null): number {
   if (!root) return 0
-
-  return Math.min(minCam(root, true, true), minCam(root, false, false))
+  const minRoot = minCam(root)
+  return Math.min(minRoot.withCam,minRoot.Son_Watch)
 };
 
-function minCam(node: TreeNode | null, placeCam: boolean, watched: boolean): number {
+interface res_obj {
+  withCam: number
+  Dad_Watch: number
+  Son_Watch: number
+}
+
+function minCam(node: TreeNode | null): res_obj {
   if (!node) {
-    if (placeCam) return Infinity
-    else return 0
-  }
-  if (placeCam) {
-    return 1 + Math.min(
-      minCam(node.left, false, true) + minCam(node.right, false, true),
-      minCam(node.left, true, true) + minCam(node.right, false, true),
-      minCam(node.left, false, true) + minCam(node.right, true, true)
-    )
-  } else {
-    if (watched) {
-      return Math.min(
-        minCam(node.left, true, true) + minCam(node.right, true, true),
-        minCam(node.left, true, true) + minCam(node.right, false, false),
-        minCam(node.left, false, false) + minCam(node.right, true, true),
-        minCam(node.left, false, false) + minCam(node.right, false, false),
-      )
-    } else {
-      return Math.min(
-        minCam(node.left, true, true) + minCam(node.right, true, true),
-        minCam(node.left, true, true) + minCam(node.right, false, false),
-        minCam(node.left, false, false) + minCam(node.right, true, true),
-      )
+    return {
+      withCam: Infinity,
+      Dad_Watch: 0,
+      Son_Watch: 0
     }
   }
+  const left = minCam(node.left)
+  const right = minCam(node.right)
+
+  const withCam = 1 + Math.min(
+    left.Dad_Watch + right.Dad_Watch,
+    left.withCam + right.Dad_Watch,
+    left.Dad_Watch + right.withCam
+  )
+  const Dad_Watch = Math.min(
+    left.withCam + right.withCam,
+    left.withCam + right.Son_Watch,
+    left.Son_Watch + right.withCam,
+    left.Son_Watch + right.Son_Watch
+  )
+  const Son_Watch = Math.min(
+    left.withCam + right.withCam,
+    left.Son_Watch + right.withCam,
+    left.withCam + right.Son_Watch
+  )
+  return { withCam, Dad_Watch, Son_Watch }
 }
 // @lc code=end
 console.log(
