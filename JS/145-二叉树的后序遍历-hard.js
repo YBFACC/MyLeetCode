@@ -6,54 +6,57 @@
 
 // @lc code=start
 /**
- * 自己--递归--迭代难
+ * 自己--Morris遍历
  * @param {TreeNode} root
  * @return {number[]}
  */
-var postorderTraversal = function (root) {
-  if (!root) return []
-  let res = []
-  const func = function (node) {
-    if (!node) return null
-    func(node.left)
-    func(node.right)
-    res.push(node.val)
-  }
-  func(root)
-  return res
+var postorderTraversal = function (head) {
+	if (!head) {
+		return []
+	}
+	const res = []
+	let curr1 = head
+	let curr2 = null
+	while (curr1) {
+		if (curr1.left) {
+			curr2 = curr1.left
+			while (curr2.right && curr2.right !== curr1) {
+				curr2 = curr2.right
+			}
+			if (!curr2.right) {
+				curr2.right = curr1
+				curr1 = curr1.left
+				continue
+			} else {
+				curr2.right = null
+				printEdge(curr1.left, res)
+			}
+		}
+		curr1 = curr1.right
+	}
+	printEdge(head, res)
+	return res
+}
+
+var printEdge = function (head, res) {
+	let tail = reverseEdge(head)
+	let curr = tail
+	while (curr) {
+		res.push(curr.val)
+		curr = curr.right
+	}
+	reverseEdge(tail)
+}
+
+var reverseEdge = function (head) {
+	let pre = null
+	let next = null
+	while (head) {
+		next = head.right
+		head.right = pre
+		pre = head
+		head = next
+	}
+	return pre
 }
 // @lc code=end
-
-// 参考--后序遍历--迭代-左右根
-var postorderTraversal = root => {
-  if (!root) return []
-  let res = []
-  let stack = [root]
-  while (stack.length > 0) {
-    let curr = stack.pop()
-    res.unshift(curr.val)
-    curr.left && stack.push(curr.left)
-    curr.right && stack.push(curr.right)
-  }
-  return res
-}
-
-function TreeNode(val) {
-  this.val = val
-  this.left = this.right = null
-}
-
-let a1 = new TreeNode(3)
-let a2 = new TreeNode(1)
-let a3 = new TreeNode(2)
-
-let a4 = new TreeNode(4)
-let a5 = new TreeNode(5)
-let a6 = new TreeNode(6)
-a1.left = a2
-a1.right = a3
-// a2.left = a4
-// a2.right = a5
-// a3.right = a6
-
-postorderTraversal(a1)
