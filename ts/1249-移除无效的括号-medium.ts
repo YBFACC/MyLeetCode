@@ -5,78 +5,29 @@
  */
 
 // @lc code=start
-//自己--递归解法-爆内存
+//copy--使用栈处理
 function minRemoveToMakeValid(s: string): string {
-  const list: string[] = []
-  let count = 0
-  let not_Remove = true
-  for (const char of s) {
-    if (char === '(' || char === ')') {
-      list.push(char)
-      if (char === '(') {
-        count++
+  if (s === '') return s;
+  let arr = [...s];
+  let stack = [];
+  for (let i = 0, length = s.length; i < length; i++) {
+    if (s[i] === '(') {
+      stack.push(i);
+    }
+    if (s[i] === ')') {
+      if (stack.length > 0) {
+        stack.pop()
       } else {
-        count--
-        if (count < 0) {
-          not_Remove = false
-        }
+        delete (arr[i])
       }
     }
   }
-  if (count !== 0) {
-    not_Remove = false
+  while (stack.length) {
+    delete (arr[stack[0]]);
+    stack.shift();
   }
-  if (not_Remove) return s
-
-  const Len = s.length
-  let res = Array.from({ length: list.length + 1 }, (v, k) => k)
-
-  const memo: any = {}
-
-  for (let i = 0; i <= list.length; i++) {
-    memo[i] = {}
-  }
-
-  const dfs = function (_delete: number[], index: number, detal: number): boolean {
-    if (detal < 0) return false
-    if (memo[index][detal] && memo[index][detal] !== 0) return memo[index][detal] === 1
-    if (_delete.length !== 0 && index === list.length && _delete.length <= res.length && detal === 0) {
-      res = _delete.slice()
-      return true
-    }
-    if (index === list.length) return false
-    let floor = false
-    if (list[index] === '(') {
-      floor = dfs(_delete, index + 1, detal + 1)
-    }
-    if (list[index] === ')' && detal >= 1) {
-      floor = dfs(_delete, index + 1, detal - 1)
-    }
-
-    _delete.push(index)
-    let _floor = dfs(_delete, index + 1, detal)
-    _delete.pop()
-
-    floor = floor || _floor
-
-    memo[index][detal] = floor ? 1 : -1
-
-    return floor
-  }
-  dfs([], 0, 0)
-
-  let temp = ''
-  let index = -1
-
-  for (const char of s) {
-    if (char === '(' || char === ')') {
-      index++
-      if (res.includes(index)) continue
-    }
-    temp += char
-  }
-
-  return temp
+  arr = arr.filter(val => val);
+  return arr.join('')
 };
 // @lc code=end
 //"lee(t(c)o)de)"
