@@ -5,34 +5,30 @@
  */
 
 // @lc code=start
-//自己--先预处理都%3--再反向从总值中减去下标代表的值
+//参考--状态转移-取余之后，只用3种状态
 function maxSumDivThree(nums: number[]): number {
-  const list: number[] = []
-  let all = 0
-  let temp = 0
-  for (const num of nums) {
-    all += num
-    temp += num % 3
-    list.push(num % 3)
-  }
-  let res = 0
-  const set = new Set()
-  const dfs = function (_temp: number, _all: number) {
-    if (_all <= res) return
-    if (_temp % 3 === 0) {
-      res = Math.max(res, _all)
-      return
-    }
-    for (let i = 0; i < list.length; i++) {
-      if (list[i] === 0 || set.has(i)) continue
-      set.add(i)
-      dfs(_temp - list[i], _all - nums[i])
-      set.delete(i)
-    }
-  }
-  dfs(temp, all)
 
-  return res
+  let res = [0, Number.MIN_SAFE_INTEGER, Number.MIN_SAFE_INTEGER]
+
+  for (const num of nums) {
+    const temp = num % 3
+    if (temp === 0) {
+      res[0] += num
+      res[1] += num
+      res[2] += num
+    } else if (temp === 1) {
+      let a = Math.max(res[0], res[2] + num)
+      let b = Math.max(res[1], res[0] + num)
+      let c = Math.max(res[2], res[1] + num)
+      res = [a, b, c]
+    } else if (temp === 2) {
+      let a = Math.max(res[0], res[1] + num)
+      let b = Math.max(res[1], res[2] + num)
+      let c = Math.max(res[2], res[0] + num)
+      res = [a, b, c]
+    }
+  }
+  return res[0]
 };
 // @lc code=end
 
