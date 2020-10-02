@@ -5,41 +5,36 @@
  */
 
 // @lc code=start
+//copy--DFS转DP
 function soupServings(N: number): number {
-  let res = 0
-  const map = new Map()
-  const dfs = function (A: number, B: number, probability: number) {
-    const path = `${A}-${B}`
-    if (map.has(path)) {
-      res += map.get(path)
-      return map.get(path)
-    }
-    if (A <= 0 && B <= 0) {
-      res += probability / 2
-      return probability / 2
-    }
-    if (A <= 0) {
-      res += probability
-      return probability
-    }
-    if (B <= 0) {
-      return 0
-    }
-    let floor = 0
-    floor += dfs(A - 100, B, probability / 4)
-    floor += dfs(A - 75, B - 25, probability / 4)
-    floor += dfs(A - 50, B - 50, probability / 4)
-    floor += dfs(A - 25, B - 75, probability / 4)
-
-    map.set(path, floor)
-
-    return floor
+  let num = Math.floor(N / 25) + (N % 25 === 0 ? 0 : 1);
+  if (num >= 500) {
+    return 1.0;
   }
-  dfs(N, N, 10000)
-
-  return res / 10000
+  let dp: number[][] = [];
+  for (let i = 0; i <= num * 2; i++) {
+    dp[i] = [];
+    for (let j = 0; j <= num * 2; j++) {
+      if (i == 0 && j == 0) {
+        dp[i][j] = 0.5;
+      } else if (i == 0 && j > 0) {
+        dp[i][j] = 1;
+      } else {
+        dp[i][j] = 0;
+      }
+    }
+  }
+  for (let i = 1; i <= num; i++) {
+    for (let j = 1; j <= num; j++) {
+      dp[i][j] = 0.25 * (dp[i - 4 > 0 ? i - 4 : 0][j]
+        + dp[i - 3 > 0 ? i - 3 : 0][j - 1 > 0 ? j - 1 : 0]
+        + dp[i - 2 > 0 ? i - 2 : 0][j - 2 > 0 ? j - 2 : 0]
+        + dp[i - 1 > 0 ? i - 1 : 0][j - 3 > 0 ? j - 3 : 0]);
+    }
+  }
+  return dp[num][num];
 };
 
 // @lc code=end
 
-soupServings(660295675)
+console.log(soupServings(50))
