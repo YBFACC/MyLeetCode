@@ -5,39 +5,35 @@
  */
 
 // @lc code=start
-//自己--DFS+记忆化-累加还在棋盘的概率
+//参考--由DFS转化为dp-滚动数组
 function knightProbability(N: number, K: number, r: number, c: number): number {
   if (K === 0) return 1
-  let res = 0
-  const map = new Map()
-  const dfs = function (x: number, y: number, _K: number, temp: number): number {
-    const path = `${x}-${y}-${_K}`
-    if (map.has(path)) {
-      res += map.get(path)
-      return map.get(path)
-    }
-    if (_K > K) {
-      res += temp
-      return temp
-    }
-    if (x < 0 || x >= N || y < 0 || y >= N) {
-      return 0
-    }
-    let floor = 0
-    floor += dfs(x + 2, y + 1, _K + 1, temp / 8)
-    floor += dfs(x + 2, y - 1, _K + 1, temp / 8)
-    floor += dfs(x - 2, y + 1, _K + 1, temp / 8)
-    floor += dfs(x - 2, y - 1, _K + 1, temp / 8)
-    floor += dfs(x + 1, y + 2, _K + 1, temp / 8)
-    floor += dfs(x - 1, y + 2, _K + 1, temp / 8)
-    floor += dfs(x + 1, y - 2, _K + 1, temp / 8)
-    floor += dfs(x - 1, y - 2, _K + 1, temp / 8)
 
-    map.set(path, floor)
-    return floor
+  let dp = Array.from({ length: N }, () => Array.from({ length: N }, () => 0))
+
+  dp[r][c] = 1
+  for (let k = 0; k < K; k++) {
+    const floor = Array.from({ length: N }, () => Array.from({ length: N }, () => 0))
+    for (let i = 0; i < N; i++) {
+      for (let j = 0; j < N; j++) {
+        let D1 = (i >= 1 && j >= 2) ? dp[i - 1][j - 2] : 0;
+        let D2 = (i >= 2 && j >= 1) ? dp[i - 2][j - 1] : 0;
+        let D3 = (i >= 2 && j < N - 1) ? dp[i - 2][j + 1] : 0;
+        let D4 = (i >= 1 && j < N - 2) ? dp[i - 1][j + 2] : 0;
+        let D5 = (i < N - 1 && j >= 2) ? dp[i + 1][j - 2] : 0;
+        let D6 = (i < N - 2 && j >= 1) ? dp[i + 2][j - 1] : 0;
+        let D7 = (i < N - 2 && j < N - 1) ? dp[i + 2][j + 1] : 0;
+        let D8 = (i < N - 1 && j < N - 2) ? dp[i + 1][j + 2] : 0;
+        floor[i][j] = (D1 + D2 + D3 + D4 + D5 + D6 + D7 + D8) / 8.0
+      }
+    }
+    dp = floor
   }
-  dfs(r, c, 0, 1)
-
+  let res = 0;
+  for (let i = 0; i < N; i++)
+    for (let j = 0; j < N; j++) {
+      res += dp[i][j];
+    }
   return res
 };
 // @lc code=end
