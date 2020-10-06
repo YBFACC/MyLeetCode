@@ -5,37 +5,35 @@
  */
 
 // @lc code=start
-//参考--DFS-剪枝
+//copy--状压dp
 function canPartitionKSubsets(nums: number[], k: number): boolean {
-  nums.sort((a, b) => a - b)
-  let all = nums.reduce((pre, curr) => pre + curr, 0)
-  const targrt = all / k
   const Len = nums.length
-  if (all % k !== 0 || nums[Len - 1] > targrt) return false
-  const set = new Set()
+  nums.sort((a, b) => a - b)
 
-  function dfs(_k: number, _target: number, index: number): boolean {
-    if (_k === 0) return true
+  let sum = nums.reduce((pre, curr) => pre + curr, 0)
+  const target = sum / k
+  if (sum % k !== 0 || nums[Len - 1] > target) return false
 
-    for (let i = index; i < Len; i++) {
-      //去重剪枝
-      if (i > 0 && nums[i] == nums[i - 1] && !set.has(i - 1)) continue;
+  const dp = Array.from({ length: 1 << Len }, () => false)
+  dp[0] = true
+  const total = Array.from({ length: 1 << Len }, () => 0)
 
-      if (set.has(i)) continue
-      set.add(i)
-      if (_target - nums[i] === 0 && dfs(_k - 1, targrt, 0)) return true
-      else if (_target - nums[i] >= nums[i] && dfs(_k, _target - nums[i], i + 1)) return true
-
-      set.delete(i)
+  for (let state = 0; state < (1 << Len); state++) {
+    if (!dp[state]) continue;
+    for (let i = 0; i < Len; i++) {
+      let future = state | (1 << i);
+      if (state != future && !dp[future]) {
+        if (nums[i] <= target - (total[state] % target)) {
+          dp[future] = true;
+          total[future] = total[state] + nums[i];
+        } else {
+          break;
+        }
+      }
     }
-
-    return false
   }
-
-  return dfs(k - 1, targrt, 0)
+  return dp[(1 << Len) - 1];
 };
-
-
 
 // @lc code=end
 
