@@ -5,34 +5,18 @@
  */
 
 // @lc code=start
-//自己--DFS+memo
+//参考--dp+滚动数组--更新k次
 function findCheapestPrice(n: number, flights: number[][], src: number, dst: number, K: number): number {
-  const graph: number[][][] = Array.from({ length: n }, () => [])
-
-  for (const [from, to, price] of flights) {
-    graph[from].push([to, price])
-  }
-
-  const map = new Map()
-
-  const dfs = function (node: number, _K: number): number {
-    if (_K > K) return Infinity
-    const path = `${node}-${_K}`
-    if (map.has(path)) return map.get(path)
-    if (_K <= K && node === dst) {
-      return 0
+  let dp: number[] = Array.from({ length: n }, () => Infinity)
+  dp[src] = 0
+  while (K-- >= 0) {
+    const floor = dp.slice()
+    for (const [from, to, price] of flights) {
+      floor[to] = Math.min(floor[to], dp[from] + price)
     }
-    let floor = Infinity
-    for (const [next, next_price] of graph[node]) {
-      floor = Math.min(floor, dfs(next, _K + 1) + next_price)
-    }
-    map.set(path, floor)
-
-    return floor
+    dp = floor
   }
-  let res = dfs(src, -1)
-
-  return res === Infinity ? -1 : res
+  return dp[dst] === Infinity ? -1 : dp[dst]
 };
 
 // @lc code=end
