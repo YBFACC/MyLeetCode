@@ -3,20 +3,39 @@
  *
  * [787] K 站中转内最便宜的航班
  */
-
+import { Heap_list } from "../moban/heap";
 // @lc code=start
-//参考--dp+滚动数组--更新k次
+//参考--Dijkstra-计算起点到终点的最短距离
 function findCheapestPrice(n: number, flights: number[][], src: number, dst: number, K: number): number {
-  let dp: number[] = Array.from({ length: n }, () => Infinity)
-  dp[src] = 0
-  while (K-- >= 0) {
-    const floor = dp.slice()
-    for (const [from, to, price] of flights) {
-      floor[to] = Math.min(floor[to], dp[from] + price)
-    }
-    dp = floor
+  const Len = n
+  const graph = Array.from({ length: Len }, () => Array.from({ length: Len }, () => 0))
+  for (const [from, to, price] of flights) {
+    graph[from][to] = price
   }
-  return dp[dst] === Infinity ? -1 : dp[dst]
+  const map = new Map()
+  const heap = new Heap_list<number[]>([], (a:number[], b:number[]) => a[0] >= b[0])
+  heap.insert([0, 0, src])
+
+  while (!heap.isEmpty()) {
+    const [cost, k, place] = heap.extract() as number[]
+
+    if (k > K + 1 || (cost > (map.has(k * 1000 + place)
+      ? map.get(k * 1000 + place) : Number.MAX_SAFE_INTEGER))) continue;
+    if (place === dst) return cost
+
+    for (let i = 0; i < Len; i++) {
+      if (graph[place][i] > 0) {
+        const newCost = cost + graph[place][i]
+        if (newCost < (map.has((k + 1) * 1000 + i)
+          ? map.get((k + 1) * 1000 + i) : Number.MAX_SAFE_INTEGER)) {
+          heap.insert([newCost, k + 1, i])
+          map.set((k + 1) * 1000 + i, newCost);
+        }
+      }
+    }
+
+  }
+  return -1
 };
 
 // @lc code=end
