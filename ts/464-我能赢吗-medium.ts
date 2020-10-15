@@ -5,34 +5,37 @@
  */
 
 // @lc code=start
-//参考--状压dp--DFS--二进制01代表是否选取
-function canIWin(maxChoosableInteger: number,desiredTotal: number): boolean {
+//参考--回溯+memo--耗时比状压高
+function canIWin(maxChoosableInteger: number, desiredTotal: number): boolean {
   // 直接获胜
   if (maxChoosableInteger >= desiredTotal) return true;
   // 全部拿完也无法到达
   var sum = maxChoosableInteger * (maxChoosableInteger + 1) / 2;
   if (desiredTotal > sum) return false;
 
+  const memo = new Int16Array(maxChoosableInteger + 1)
   const map = new Map()
-
-  const dfs = function (total: number, state: number): boolean {
-
-    if (map.has(state)) return map.get(state)
-
+  const dfs = function (sum: number,): boolean {
+    const path = memo.join()
+    if (map.has(path)) return map.get(path)
     for (let i = 1; i <= maxChoosableInteger; i++) {
-      const curr = 1 << i
-      if (state & curr) continue
-
-      if (i >= total || !dfs(total - i, state | curr)) {
-        map.set(state, true)
+      if (memo[i]) continue
+      if (i + sum >= desiredTotal) {
         return true
       }
+      memo[i] = 1
+      if (!dfs(sum + i)) {
+        map.set(path, true)
+        memo[i] = 0
+        return true
+      }
+      memo[i] = 0
     }
-    map.set(state, false)
+    map.set(path, false)
     return false
   }
 
-  return dfs(desiredTotal, 0)
+  return dfs(0)
 };
 
 
