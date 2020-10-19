@@ -8,27 +8,27 @@
 //参考--dp
 function canCross(stones: number[]): boolean {
   const Len = stones.length
-  //第i个石头到第j个石头是否成功
-  //使用set存储--到第i个石头的步长
+  //第i项--jump值
   const dp = new Map()
+  //map-嵌套map耗时太高--没有set简练
   for (const stone of stones) {
-    dp.set(stone, new Set())
+    dp.set(stone, new Map())
   }
 
-  dp.get(0).add(0)
+  dp.get(0).set(0, true)
   if (stones[1] > 1) return false
   for (let i = 0; i < Len; i++) {
-    for (const k of dp.get(stones[i])) {
-      for (let step = k - 1; step <= k + 1; step++) {
-        if (step > 0 && dp.has(stones[i] + step)) {
-          dp.get(stones[i] + step).add(step);
-        }
+    for (let j = 0; j < i; j++) {
+      const k = stones[i] - stones[j]
+      const value = dp.get(stones[j]).get(k - 1) || dp.get(stones[j]).get(k) || dp.get(stones[j]).get(k + 1)
+      dp.get(stones[i]).set(k, value)
+      if (i == Len - 1 && value) {
+        return true;
       }
     }
-
   }
 
-  return dp.get(stones[Len - 1]).size > 0;
+  return false
 };
 // @lc code=end
 console.log(canCross([0, 1, 2147483647]))
