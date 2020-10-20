@@ -5,34 +5,41 @@
  */
 
 // @lc code=start
-//自己--DFS思路错误
-//剪枝失败--当前节点向前搜索时，可能往回方向记录无关节点
+//提示--BFS--模版题
 function shortestPathBinaryMatrix(grid: number[][]): number {
-  const map = new Map()
   const Len = grid.length
+  if (grid[0][0] === 1) return -1
+  if (Len === 1) return 1
   const ways = [[1, 1], [0, 1], [1, 0], [1, -1], [-1, 1], [-1, 0], [0, -1], [-1, -1]]
-
-  const dfs = function (x: number, y: number): number {
-    const path = `${x}-${y}`
-    if (grid[x][y] === 1) return Infinity
-    if (x === Len - 1 && y === Len - 1) return 1
-    if (map.has(path)) return map.get(path)
-    grid[x][y] = 1
-    let floor = Infinity
-    for (const [_x, _y] of ways) {
-      const X = x + _x, Y = y + _y
-      if (X < 0 || X >= Len || Y < 0 || Y >= Len) continue
-      floor = Math.min(floor, dfs(X, Y) + 1)
+  const set = new Set()
+  let res = 1
+  let bfs = [[0, 0]]
+  while (bfs.length > 0) {
+    let size = bfs.length
+    res++
+    while (size-- > 0) {
+      const [x, y] = bfs.shift() as number[]
+      const Path = `${x}-${y}`
+      set.add(Path)
+      for (const [_x, _y] of ways) {
+        const X = x + _x, Y = y + _y
+        if (set.has(`${X}-${Y}`) || X < 0 || X >= Len || Y < 0 || Y >= Len || grid[X][Y] === 1) continue
+        if (X === Len - 1 && Y === Len - 1) return res
+        set.add(`${X}-${Y}`)
+        bfs.push([X, Y])
+      }
     }
-
-    map.set(path, floor)
-    grid[x][y] = 0
-    return floor
   }
-  let res = dfs(0, 0)
-  return res === Infinity ? -1 : res
+
+  return -1
 };
 // @lc code=end
+console.log(shortestPathBinaryMatrix([
+  [1, 0, 0],
+  [1, 1, 0],
+  [1, 1, 0]
+]))
+
 //7
 console.log(shortestPathBinaryMatrix([
   [0, 0, 0, 0, 1, 1],
