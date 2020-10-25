@@ -5,25 +5,26 @@
  */
 
 // @lc code=start
-//参考--双指针--基本思路
+//参考--记录递增和递减的长度
 function longestMountain(A: number[]): number {
-
-  let res = 0
   const Len = A.length
-  for (let i = 1; i < Len - 1; i++) {
-    if (A[i - 1] < A[i] && A[i] > A[i + 1]) {
-      let left = i - 1
-      let right = i + 1
-      while (left > 0 && A[left - 1] < A[left]) {
-        left--
-      }
-      while (right < Len - 1 && A[right] > A[right + 1]) {
-        right++
-      }
-      res = Math.max(res, right - left + 1)
-    }
+  if (Len === 0) return 0
+
+  const left = Array.from({ length: Len }, () => 0)
+  for (let i = 1; i < Len; i++) {
+    left[i] = A[i] > A[i - 1] ? left[i - 1] + 1 : 0
+  }
+  const right = Array.from({ length: Len }, () => 0)
+  for (let i = Len - 1; i > 0; i--) {
+    right[i] = A[i] > A[i + 1] ? right[i + 1] + 1 : 0
   }
 
+  let res = 0
+  for (let i = 0; i < Len; i++) {
+    if (left[i] > 0 && right[i] > 0) {
+      res = Math.max(res, right[i] + left[i] + 1)
+    }
+  }
   return res
 };
 
