@@ -1,28 +1,23 @@
-//参考--将和为目标值的子数组放入数组--暴力查找最小值N^2
+//参考--dp+hash
+//dp记录i之前，和为target的数组最小长度
+//都是正数=>和是递增的--和减去target可以得到唯一下标
 function minSumOfLengths(arr: number[], target: number): number {
-  const memo = []
-  let left = 0
-  let right = 0
-  let count = 0
-  while (right < arr.length) {
-    count += arr[right]
-    right++
-    while (left < right && count >= target) {
-      if (count === target) memo.push([right - left, left])
-      count -= arr[left]
-      left++
+  const Len = arr.length
+  const map = new Map()
+  const dp = Array.from({ length: Len + 1 }, () => Len + 1)
+  let res = Len + 1
+  let sum = 0
+  map.set(0, -1)
+  for (let i = 0; i < Len; i++) {
+    sum += arr[i]
+    map.set(sum, i)
+    if (i > 0) dp[i] = dp[i - 1]
+    if (map.has(sum - target)) {
+      let pre = map.get(sum - target)
+      if (pre >= 0 && dp[pre] <= Len) { res = Math.min(res, i - pre + dp[pre]) }
+      dp[i] = Math.min(dp[i], i - pre)
     }
   }
-  let min = Infinity
-  memo.sort((a, b) => a[0] - b[0])
-  const Len = memo.length
-  for (let i = 0; i < Len - 1; i++) {
-    for (let j = i + 1; j < Len; j++) {
-      if (memo[i][1] < memo[j][1] && memo[i][1] + memo[i][0] > memo[j][1]) continue
-      if (memo[j][1] < memo[i][1] && memo[j][1] + memo[j][0] > memo[i][1]) continue
-      min = Math.min(min, memo[i][0] + memo[j][0])
-      break
-    }
-  }
-  return min === Infinity ? -1 : min
+  return res > Len ? -1 : res
 };
+minSumOfLengths([3, 1, 1, 1, 5, 1, 2, 1], 3)
