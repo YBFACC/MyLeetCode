@@ -1,22 +1,19 @@
-//参考--回溯
+//参考--二进制
 //每一个值有选和不选两种状态
 function subsets(nums: number[]): number[][] {
   const Len = nums.length
   let res: number[][] = []
-
-  const dfs = function (temp: number[], index: number) {
-    if (Len === index) {
-      res.push(temp.slice())
-      return
+  //一共有0-all种状态
+  const all = 1 << Len
+  for (let i = 0; i < all; i++) {
+    const temp = []
+    for (let j = 0; j < Len; j++) {
+      if ((i >> j) & 1) {
+        temp.push(nums[j])
+      }
     }
-    res.push(temp.slice())
-    for (let i = index; i < Len; i++) {
-      temp.push(nums[i])
-      dfs(temp, i + 1)
-      temp.pop()
-    }
+    res.push(temp)
   }
-  dfs([], 0)
   return res
 };
 subsets([1, 2, 3])
