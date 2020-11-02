@@ -1,25 +1,31 @@
-//自己--超时
+//参考--同余定理+前缀和
+//遍历数组--0-i项的模是a，0-j项的模也是a
+//求模相同的最短距离
 function minSubarray(nums: number[], p: number): number {
   const Len = nums.length
-  const list = Array.from({ length: Len + 1 }, () => 0)
-  for (let i = 1; i <= Len; i++) {
-    list[i] = list[i - 1] + nums[i - 1]
+  let sum = 0
+  let mod = 0
+  for (const num of nums) {
+    sum += num
+    mod = (mod + num) % p
   }
-  let res = Len + 2
-  let all = list[Len]
-  if (all < p) return -1
-  if (all % p === 0) { return 0 }
-  for (let i = 0; i <= Len; i++) {
-    for (let j = i; j <= Len; j++) {
-      const dic = j - i
-      const temp = list[j] - list[i]
-      if (all - temp > 0 && (all - temp) % p === 0) {
-        res = Math.min(res, dic)
-      }
+  if (mod === 0) return 0
+  if (sum < p) return -1
+  let s = 0,
+    minLen = Number.MAX_SAFE_INTEGER
+  const map = new Map()
+  map.set(0, -1)
+  for (let i = 0; i < Len; i++) {
+    s = (s + nums[i]) % p
+    const target = (s + p - mod) % p
+    if (map.has(target)) {
+      minLen = Math.min(minLen, i - map.get(target))
     }
+    map.set((s + p) % p, i)
   }
-  return res === Len + 2 ? -1 : res
-};
+  if (minLen >= nums.length) return -1
+  return minLen >= map.size ? -1 : minLen
+}
 //-1
 console.log(minSubarray([4, 4, 2], 7))
 //-1
