@@ -3,29 +3,21 @@
  *
  * [930] 和相同的二元子数组
  */
-//参考--滑窗
+//参考--atMost-前缀和母题5
 // @lc code=start
 function numSubarraysWithSum(A: number[], S: number): number {
-  let left = 0
-  let right = 0
-  let sum = 0
+  return atMost(A, S) - atMost(A, S - 1)
+}
+function atMost(A: number[], S: number): number {
+  if (S < 0) return 0
   let res = 0
-  const Len = A.length
-  while (right < Len) {
-    sum += A[right]
-    while (sum > S) {
-      sum -= A[left]
-      left++
+  let left = 0
+  for (let i = 0; i < A.length; i++) {
+    S -= A[i]
+    while (S < 0) {
+      S += A[left++]
     }
-    if (sum === S) {
-      let start = left, limit = sum
-      while (start < right && limit === sum) {
-        limit -= A[start]
-        res++
-        start++
-      }
-    }
-    right++
+    res += i - left + 1
   }
   return res
 }
