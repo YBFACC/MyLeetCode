@@ -13,29 +13,27 @@
  */
 import { TreeNode, ListNode, runScript } from 'leetcode-class';
 
-//自己--模拟题目实现--每次删除叶子节点
+//参考--后序遍历--反向定义深度
 
 function findLeaves(root: TreeNode | null): number[][] {
-
   const res: number[][] = []
 
-  while (root && (root.left || root.right)) {
-    const temp: number[] = []
-    dfs(root, temp)
-    res.push(temp)
+  const dfs = function (node: TreeNode | null): number {
+    if (!node) return -1
+
+    let left = dfs(node.left)
+    let right = dfs(node.right)
+    const index = Math.max(left, right) + 1
+    if (!res[index]) {
+      res[index] = []
+    }
+    res[index].push(node.val)
+    return index
   }
-  root && res.push([root.val])
+  dfs(root)
+
   return res
 };
-const dfs = function (node: TreeNode | null, temp: number[]): TreeNode | null {
-  if (!node) return null
-  if (!node.left && !node.right) {
-    temp.push(node.val)
-    return null
-  }
-  node.left = dfs(node.left, temp)
-  node.right = dfs(node.right, temp)
-  return node
-}
+
 
 findLeaves(TreeNode.create([1, 2, 3, 4, 5]))
