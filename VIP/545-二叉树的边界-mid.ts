@@ -1,49 +1,27 @@
 import { AVLTree, Heap, TreeNode, ListNode, RunScript } from 'lc-tool';
 
-//自己--先找左边界，加入所有叶子节点，加入右边界
+//参考--先序遍历--抽象
 
 function boundaryOfBinaryTree(root: TreeNode | null): number[] {
   if (!root) return []
-  const res: number[] = [root.val]
-  let sign1 = false
-  const dfs1 = function (node: TreeNode | null) {
-    if (!node || sign1) return
-    if (!node.left && !node.right) {
-      sign1 = true
-      return
-    }
-    res.push(node.val)
-    dfs1(node.left)
-    dfs1(node.right)
-  }
-  dfs1(root.left)
-
-  const dfs2 = function (node: TreeNode | null) {
+  const res: number[] = []
+  const dfs = function (node: TreeNode | null, leftBound: boolean, rightBound: boolean) {
     if (!node) return
-    if (!node.left && !node.right) {
+
+    if (leftBound) {
+      res.push(node.val)
+    } else if (node.left == null && node.right == null) {
+      res.push(node.val);
+      return;
+    }
+    dfs(node.left, leftBound, !leftBound && rightBound && node.right == null)
+    dfs(node.right, !rightBound && leftBound && node.left == null, rightBound)
+    if (!leftBound && rightBound) {
       res.push(node.val)
     }
-    dfs2(node.left)
-    dfs2(node.right)
   }
-  dfs2(root.left)
-  dfs2(root.right)
+  dfs(root, true, true)
 
-  const temp: number[] = []
-  let sign3 = false
-  const dfs3 = function (node: TreeNode | null) {
-    if (!node || sign3) return
-    if (!node.left && !node.right) {
-      sign3 = true
-      return
-    }
-    temp.push(node.val)
-    dfs3(node.right)
-    dfs3(node.left)
-  }
-  dfs3(root.right)
-
-  res.push(...temp.reverse())
   return res
 };
 
