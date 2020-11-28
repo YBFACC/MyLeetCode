@@ -48,3 +48,55 @@ function loudAndRich(richer: number[][], quiet: number[]): number[] {
 
 loudAndRich([[1, 0], [2, 1], [3, 1], [3, 7], [4, 3], [5, 3], [6, 3]],
   [3, 2, 5, 4, 6, 1, 7, 0])
+
+
+//参考--拓扑排序
+//富有->贫穷
+//富有推向贫穷，每次只要和当前富有的安静值比较
+
+function loudAndRich1(richer: number[][], quiet: number[]): number[] {
+  const map = new Map()
+  const N = quiet.length
+  const indegree = new Int32Array(N)
+  for (const [rich, poor] of richer) {
+    if (!map.has(rich)) map.set(rich, [])
+    map.get(rich).push(poor)
+    indegree[poor]++
+  }
+  const queue = []
+  for (let i = 0; i < N; i++) {
+    if (indegree[i] === 0) {
+      queue.push(i)
+    }
+  }
+  const res = Array.from({ length: N }, (v, k) => k)
+
+  while (queue.length > 0) {
+    let size = queue.length
+    while (size > 0) {
+      const curr = queue.shift() as number
+      if (map.has(curr)) {
+        const poor_list = map.get(curr)
+        for (const poor of poor_list) {
+          if (quiet[res[poor]] > quiet[res[curr]]) {
+            res[poor] = res[curr]
+          }
+          --indegree[poor]
+          if (indegree[poor] === 0) queue.push(poor)
+        }
+      }
+      size--
+    }
+  }
+
+  return res
+};
+
+
+loudAndRich1([[0, 2], [1, 2]],
+  [0, 1, 2])
+
+loudAndRich1([[1, 0], [2, 1], [3, 1], [3, 7], [4, 3], [5, 3], [6, 3]],
+  [3, 2, 5, 4, 6, 1, 7, 0])
+
+
