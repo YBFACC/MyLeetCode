@@ -31,7 +31,43 @@ function maxSubarraySumCircular(A: number[]): number {
 
   return res
 };
+
+//copy--统计[0,i]和[j,A.length]的统计连续最大值
+
+function maxSubarraySumCircular1(A: number[]): number {
+  const N = A.length
+  let ans = A[0]
+  let curr = A[0]
+
+  //不需要循环就得到最大值
+  for (let i = 1; i < N; i++) {
+    curr = A[i] + Math.max(curr, 0)
+    ans = Math.max(ans, curr)
+  }
+
+  //统计[j,A.length]的连续数组最大值
+  const rightsums = []
+  rightsums[N - 1] = A[N - 1];
+  const maxright = []//得到[j,A.length]的最大值
+  maxright[N - 1] = A[N - 1];
+  for (let i = N - 2; i >= 0; --i) {
+    rightsums[i] = rightsums[i + 1] + A[i];
+    maxright[i] = Math.max(maxright[i + 1], rightsums[i]);
+  }
+
+  let leftsum = 0;
+  for (let i = 0; i < N - 2; ++i) {
+    leftsum += A[i];
+    ans = Math.max(ans, leftsum + maxright[i + 2]);
+  }
+
+  return ans
+};
+
+
 // @lc code=end
+
+maxSubarraySumCircular1([3, -2, 2, -3])
 
 //16
 maxSubarraySumCircular([0, 5, 8, -9, 9, -7, 3, -2])
