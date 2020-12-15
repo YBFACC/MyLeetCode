@@ -4,7 +4,7 @@
  * [1031] 两个非重叠子数组的最大和
  */
 
-//提示--前缀和--先固定M求得L的最大值
+//提示--前缀和--固定一边dp最大值，枚举另一边
 
 // @lc code=start
 function maxSumTwoNoOverlap(A: number[], L: number, M: number): number {
@@ -18,16 +18,26 @@ function maxSumTwoNoOverlap(A: number[], L: number, M: number): number {
     preSum[i + 1] = preSum[i] + A[i]
   }
 
+  const left_L = new Int32Array(Len)
+  const right_L = new Int32Array(Len)
+
+  let count = 0
+  for (let i = 0; i < Len; i++) {
+    count += i >= L ? A[i] - A[i - L] : A[i]
+    left_L[i] = i >= L - 1 ? Math.max(left_L[i - 1] || 0, count) : 0
+  }
+
+  count = 0
+  for (let i = Len - 1; i >= 0; i--) {
+    count += i < Len - L ? A[i] - A[i + L] : A[i]
+    right_L[i] = i < Len - L + 1 ? Math.max(right_L[i + 1] || 0, count) : 0
+  }
+
+
   for (let i = 0; i + M <= Len; i++) {
     const M_value = helper(preSum, i, i + M)
-    for (let j = 0; j + L < i; j++) {
-      const L_value = helper(preSum, j, j + L)
-      res = Math.max(res, M_value + L_value)
-    }
-    for (let j = i + M; j + L <= Len; j++) {
-      const L_value = helper(preSum, j, j + L)
-      res = Math.max(res, M_value + L_value)
-    }
+    const temp = Math.max(left_L[i - 1] || 0, right_L[i + M + 1] || 0)
+    res = Math.max(res, temp + M_value)
   }
 
   return res
