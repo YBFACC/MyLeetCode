@@ -4,7 +4,7 @@
 function minSubarray(nums: number[], p: number): number {
   const Len = nums.length
   let sum = 0
-  let mod = 0
+  let mod = 0//nums数组中需要移除的值
   for (const num of nums) {
     sum += num
     mod = (mod + num) % p
