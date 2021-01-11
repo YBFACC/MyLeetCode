@@ -1,78 +1,37 @@
 
-//copy--暴力所有线
+//参考--dp--可改为一维
 
 function longestLine(M: number[][]): number {
-  if (M.length === 0 || M[0].length == 0) return 0
-  let rowLen = M.length, colLen = M[0].length
-  let res = 0;
-  //行遍历
-  for (let i = 0; i < rowLen; i++) {
-    let last = -1;
-    for (let j = 0; j < colLen; j++) {
-      if (M[i][j]) {
-        res = Math.max(res, j - last);
+  if (M == null || M.length == 0 || M[0].length == 0)
+    return 0;
+  let ans = 0;
+  const Row = M.length
+  const Col = M[0].length
+  const x = Array.from({ length: Row }, () => Array.from({ length: Col }, () => 0))
+  const y = Array.from({ length: Row }, () => Array.from({ length: Col }, () => 0))
+  const x_y = Array.from({ length: Row }, () => Array.from({ length: Col }, () => 0))
+  const y_x = Array.from({ length: Row }, () => Array.from({ length: Col }, () => 0))
+  for (let i = 0; i < Row; i++) {
+    for (let j = 0; j < Col; j++) {
+      if (M[i][j] === 0) {
+        x[i][j] = 0
+        y[i][j] = 0
+        x_y[i][j] = 0
+        y_x[i][j] = 0
       } else {
-        last = j;
+        x[i][j] = j > 0 ? x[i][j - 1] + 1 : 1
+        y[i][j] = i > 0 ? y[i - 1][j] + 1 : 1
+        x_y[i][j] = i > 0 && j > 0 ? x_y[i - 1][j - 1] + 1 : 1
+        y_x[i][j] = i > 0 && j < Col - 1 ? y_x[i - 1][j + 1] + 1 : 1
       }
+      ans = Math.max(ans, x[i][j]);
+      ans = Math.max(ans, y[i][j]);
+      ans = Math.max(ans, x_y[i][j]);
+      ans = Math.max(ans, y_x[i][j]);
     }
   }
-  //列遍历
-  for (let j = 0; j < colLen; j++) {
-    let last = -1;
-    for (let i = 0; i < rowLen; i++) {
-      if (M[i][j]) {
-        res = Math.max(res, i - last);
-      } else {
-        last = i;
-      }
-    }
-  }
-  //对角线
-  let x = colLen - 1, y = 0;
-  while (!(x == 0 && y == colLen - 1)) {
-    let i = x, j = y;
-    let cnt = 0;
-    while (i < rowLen && j < colLen) {
-      if (M[i][j]) {
-        cnt++;
-        res = Math.max(cnt, res);
-      } else {
-        cnt = 0;
-      }
-      i++;
-      j++;
-    }
-    if (x) {
-      x--;
-    } else {
-      y++;
-    }
-  }
-  //反对角线
-  x = 0, y = 0;
-  while (!(x == rowLen - 1 && y == colLen - 1)) {
-    let i = x, j = y;
-    let cnt = 0;
-    while (i >= 0 && j < colLen) {
-      if (M[i][j]) {
-        cnt++;
-        res = Math.max(res, cnt);
-      } else {
-        cnt = 0;
-      }
-      i--;
-      j++;
-    }
-    if (x < rowLen - 1) {
-      x++;
-    } else {
-      y++;
-    }
-  }
-  return res;
-}
+  return ans;
+};
 
 longestLine(
-  [[0, 1, 1, 0],
-  [0, 1, 1, 0],
-  [0, 0, 0, 1]])
+  [[1, 1, 1, 1], [1, 1, 1, 1], [0, 0, 0, 1]])
