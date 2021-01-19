@@ -6,7 +6,7 @@
 
 import { AVLTree, Heap, TreeNode, ListNode, RunScript, Node, SegmentTree } from 'lc-tool';
 
-//参考--最小生成树-prim
+//参考--最小生成树-prim+堆
 
 // @lc code=start
 function minCostConnectPoints(points: number[][]): number {
@@ -24,33 +24,28 @@ function minCostConnectPoints(points: number[][]): number {
   const lowcost = Array.from({ length: Len }, () => Infinity)
   const visited = Array.from({ length: Len }, () => false)
 
-  visited[0] = true
-  for (let i = 1; i < Len; i++) {
-    lowcost[i] = graph[0][i]
-  }
+  //[距离，下标]
+  const heap = new Heap<number[]>([], (a: number[], b: number[]) => {
+    return a[0] >= b[0]
+  })
+  heap.insert([0, 0])
 
-  for (let i = 1; i < Len; i++) {
-    let minIdx = -1
-    let minVal = Infinity
-    for (let j = 0; j < Len; j++) {
-      if (visited[j]) continue
-      if (lowcost[j] < minVal) {
-        minIdx = j
-        minVal = lowcost[j]
-      }
-    }
-    res += minVal
-    visited[minIdx] = true
-    lowcost[minIdx] = Infinity
-
-    for (let j = 0; j < Len; j++) {
-      if (!visited[j] && graph[minIdx][j] < lowcost[j]) {
-        lowcost[j] = graph[minIdx][j]
+  while (!heap.isEmpty()) {
+    const [val, index] = heap.extract() as number[]
+    if (visited[index]) continue
+    visited[index] = true
+    res += val
+    for (let i = 0; i < Len; i++) {
+      const temp = graph[i][index]
+      if (!visited[i] && temp < lowcost[i]) {
+        lowcost[i] = temp
+        heap.insert([temp, i])
       }
     }
   }
+
   return res
 };
 // @lc code=end
 
-console.log(minCostConnectPoints([[3, 12], [-2, 5], [-4, 1]]))
+console.log(minCostConnectPoints([[0,0],[2,2],[3,10],[5,2],[7,0]]))
