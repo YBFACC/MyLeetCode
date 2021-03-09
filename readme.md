@@ -337,6 +337,7 @@
 ## 最长递增序列（Longest Increasing Subsequence）
 
     * 674-最长连续递增序列-easy
+    * 354-俄罗斯套娃信封问题-hard（降维）
 
 ## 单调栈
     * 85-最大矩形-hard（84题升级版）
