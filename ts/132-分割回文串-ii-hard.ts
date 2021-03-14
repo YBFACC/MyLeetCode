@@ -4,40 +4,24 @@
  * [132] 分割回文串 II
  */
 
-//自己超时
+//提示--dp
 
 // @lc code=start
 function minCut(s: string): number {
-  let res = s.length
-  const visited = new Map()
-  const backTrack = (strs: string, temp: string[], index: number) => {
-    if (strs.length === 0) {
-      res = Math.min(res, temp.length - 1)
+  const Len = s.length
+  const list = Array.from({ length: Len }, () => Len)
+  list[0] = 0
+  for (let i = 1; i < Len; i++) {
+    if (Palindrome(s.slice(0, i + 1))) {
+      list[i] = 0
+      continue
     }
-
-    for (let i = 1; i <= strs.length; i++) {
-      const str = strs.slice(0, i)
-      let visit = `${index},${i}`
-      if (visited.has(visit)) {
-        if (visited.get(visit)) {
-          temp.push(str)
-          backTrack(strs.slice(i), temp, index + i)
-          temp.pop()
-        }
-      } else {
-        if (Palindrome(str)) {
-          temp.push(str)
-          visited.set(visit, true)
-          backTrack(strs.slice(i), temp, index + i)
-          temp.pop()
-        } else {
-          visited.set(visit, false)
-        }
-      }
+    for (let j = 0; j < i; j++) {
+      if (!Palindrome(s.slice(j + 1, i + 1))) continue
+      list[i] = Math.min(list[i], list[j] + 1)
     }
   }
-  backTrack(s, [], 0)
-  return res
+  return list[Len - 1]
 }
 function Palindrome(str: string): boolean {
   let left = 0
