@@ -63,6 +63,52 @@ import { isSemicolonClassElement } from "typescript"
 
 import { AVLTree, Heap, TreeNode, ListNode, RunScript, Node, SegmentTree } from 'lc-tool';
 
+// function findTheCity(n: number, edges: number[][], distanceThreshold: number): number {
+//   const map = Array.from({ length: n }, (v1, k1) =>
+//     Array.from({ length: n }, (v2, k2) => (k1 === k2 ? 0 : Infinity))
+//   )
+//   for (const [from, to, weight] of edges) {
+//     map[from][to] = weight
+//     map[to][from] = weight
+//   }
+//   let res = 0
+//   let MIN = n + 1
+
+//   for (let i = 0; i < n; i++) {//起点
+//     const dist = Array.from({ length: n }, () => Infinity)
+//     dist[i] = 0
+//     const MinHeap = new Heap<number[]>([], (a: number[], b: number[]) => {
+//       return a[0] >= b[0]
+//     })
+//     //[距离，目的地]
+//     MinHeap.insert([0, i])
+//     while (!MinHeap.isEmpty()) {
+//       const [val, index] = MinHeap.extract() as number[]
+//       if (dist[index] < val) continue
+//       for (let k = 0; k < n; k++) {
+//         if (dist[k] > map[index][k] + val) {
+//           dist[k] = map[index][k] + val
+//           MinHeap.insert([map[index][k] + val, k])
+//         }
+//       }
+//     }
+
+//     let temp = 0
+//     for (let j = 0; j < n; j++) {
+//       if (dist[j] <= distanceThreshold) temp++
+//     }
+//     if (temp <= MIN) {
+//       MIN = temp
+//       res = i
+//     }
+//   }
+
+//   return res
+// }
+
+//参考--Floyd--本质3维dp到2维dp
+//降维：上一维在后面不再使用
+
 function findTheCity(n: number, edges: number[][], distanceThreshold: number): number {
   const map = Array.from({ length: n }, (v1, k1) =>
     Array.from({ length: n }, (v2, k2) => (k1 === k2 ? 0 : Infinity))
@@ -71,41 +117,30 @@ function findTheCity(n: number, edges: number[][], distanceThreshold: number): n
     map[from][to] = weight
     map[to][from] = weight
   }
-  let res = 0
-  let MIN = n + 1
 
-  for (let i = 0; i < n; i++) {//起点
-    const dist = Array.from({ length: n }, () => Infinity)
-    dist[i] = 0
-    const MinHeap = new Heap<number[]>([], (a: number[], b: number[]) => {
-      return a[0] >= b[0]
-    })
-    //[距离，目的地]
-    MinHeap.insert([0, i])
-    while (!MinHeap.isEmpty()) {
-      const [val, index] = MinHeap.extract() as number[]
-      if (dist[index] < val) continue
-      for (let k = 0; k < n; k++) {
-        if (dist[k] > map[index][k] + val) {
-          dist[k] = map[index][k] + val
-          MinHeap.insert([map[index][k] + val, k])
-        }
+  for (let k = 0; k < n; k++) {
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
+        if (i == j || map[k][j] == Infinity || map[k][i] === Infinity) continue
+        map[i][j] = Math.min(map[i][k] + map[k][j], map[i][j])
       }
     }
-
-    let temp = 0
+  }
+  let res = 0
+  let MIN = n + 1
+  for (let i = 0; i < n; i++) {
+    let cnt = 0
     for (let j = 0; j < n; j++) {
-      if (dist[j] <= distanceThreshold) temp++
+      if (i !== j && map[i][j] <= distanceThreshold) cnt++
     }
-    if (temp <= MIN) {
-      MIN = temp
+    if (cnt <= MIN) {
+      MIN = cnt
       res = i
     }
   }
 
   return res
 }
-
 
 // @lc code=end
 console.log(
