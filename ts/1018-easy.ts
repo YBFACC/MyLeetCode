@@ -4,7 +4,7 @@
  * [1018] 可被 5 整除的二进制前缀
  */
 
-//自己--注意移除
+//自己--注意溢出
 
 // @lc code=start
 function prefixesDivBy5(A: number[]): boolean[] {
