@@ -5,14 +5,22 @@
  */
 
 // @lc code=start
-//copy--使用掩码--3进制
+//提示--32位各位模3
+
 var singleNumber = function (nums: number[]): number {
-  let ones = 0, twos = 0;
-  for (const num of nums) {
-    ones = ones ^ num & ~twos;
-    twos = twos ^ num & ~ones;
+  const list = Array.from({ length: 32 }, () => 0)
+  for (let num of nums) {
+    for (let i = 0; i < 32; i++) {
+      list[i] += num & 1
+      num >>>= 1
+    }
   }
-  return ones;
+  let res = 0
+  for (let i = 0; i < 32; i++) {
+    res <<= 1
+    res += list[31 - i] % 3
+  }
+  return res
 };
 // @lc code=end
 
