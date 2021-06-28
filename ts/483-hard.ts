@@ -22,6 +22,7 @@ var smallestGoodBase = function (n: string): string {
       }
     }
   }
+  //0次方是1
   return (BigInt(n) - BigInt(1)) + '';
 };
 
