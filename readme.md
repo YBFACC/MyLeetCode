@@ -359,6 +359,7 @@
     * 1631-最小体力消耗路径-mid(dijkstra)
     * 778-水位上升的泳池中游泳-hard(dijkstra)
     * 1334-阈值距离内邻居最少的城市(dijkstra，Floyd)
+    * 743-网络延迟时间-mid(BFS)
 
 ## 字符串
 
