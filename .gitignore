@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 *.iml
 *.txt
 *.xml
@@ -12,19 +11,8 @@ md
 tttt.js
 /src
 node_modules
-
 package.json
 package-lock.json
-
 tttt.ts
 dist
 /zuoye
-=======
-
-
-
-
-
-
-
->>>>>>> fc691e65ec60b49aa27fbb3915845e505b86dd7e
