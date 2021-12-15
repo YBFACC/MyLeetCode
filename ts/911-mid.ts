@@ -2,14 +2,13 @@
  * @Author: yubingfeng
  * @Date: 2021-12-13 15:56:08
  * @LastEditors: yubingfeng
- * @LastEditTime: 2021-12-13 18:00:28
+ * @LastEditTime: 2021-12-15 09:05:22
  * @Description: 自己--预处理+二分
  * todo--ts的类型错误
  */
 import { AVLTree, Heap, TreeNode, ListNode, RunScript, Node, SegmentTree, Trie, NumberOfTrailingZeros, LinkedEdge } from 'lc-tool';
 interface obj {
-  [index: number]: number,
-  [key: string]: number
+  [index: string]: number,
 }
 class TopVotedCandidate {
   times: number[]
@@ -17,7 +16,7 @@ class TopVotedCandidate {
   constructor(persons: number[], times: number[]) {
     this.times = times;
     this.personList = [];
-    let obj = {
+    let obj: obj = {
       max: 1,
       lastMax: persons[0],
     };
